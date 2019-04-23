@@ -4,16 +4,14 @@ Team Name: Little Yellow Duck
 Team member: Ziwen Zeng, Yuhan Wang
 
 
-We decided to implement a web app that gives self-media inspirations to 
-write popular articles. Baiscally our web app will provide analysis of different
-existing articles of different categories.
 
+We decided to implement a web app that gives self-media and those who are interested in self-media inspirations to 
+write popular articles. Baiscally, our web app provides analysis of existing popular articles, and provides recent trends and most popular articles. It will also give daily post about writing articles on social media.
 
 Target user population: 1. Self-media who wants to know recent trend.
-2. Self-media who wants to learn how to read.
+2. Self-media who wants to learn how to write articles that are attractive. 
 
-None of our teammates fall in this user group because we are all not self-media.
-
+None of our teammates fall in this user group because we are all not self-media, and we are not planning to learn about writing on social media.
 
 Possible source is Medium's article dataset from Kaggle.
 
