@@ -21,7 +21,7 @@ Possible source is Medium's article dataset from Kaggle.
 
 
 
-![storyboard1](https://github.com/Hannahh1425/cogs121/blob/master/Storyboard1.JPG)
+![storyboard1](https://github.com/Hannahh1425/cogs121/blob/master/M1/Storyboard1.JPG)
 ![storyboard2](https://github.com/Hannahh1425/cogs121/blob/master/Storyboard2.JPG)
 ![prototype1](https://github.com/Hannahh1425/cogs121/blob/master/Prototype1.JPG)
 ![prototype2](https://github.com/Hannahh1425/cogs121/blob/master/Prototype2.JPG)
