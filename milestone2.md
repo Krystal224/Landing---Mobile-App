@@ -1,5 +1,4 @@
-Our idea is similar to our proposal in milestone 1. We decided to implement a web app that gives self-media and those who are interested in self-media inspirations to 
-write popular articles. Baiscally, our web app provides analysis of existing popular articles, and provides recent trends and most popular articles. It will also give daily post about writing articles on social media.
+Our idea is similar to our proposal in milestone 1. Self-media is people who is 
 
 Target user population: 1. Self-media who wants to know recent trend.
 2. Self-media who wants to learn how to write articles that are attractive. 
@@ -14,7 +13,6 @@ Possible source is Medium's article dataset from Kaggle.
 
 
 
-![storyboard1](https://github.com/Hannahh1425/cogs121/blob/master/M1/Storyboard1.JPG)
-![storyboard2](https://github.com/Hannahh1425/cogs121/blob/master/M1/Storyboard2.JPG)
-![prototype1](https://github.com/Hannahh1425/cogs121/blob/master/M1/Prototype1.JPG)
-![prototype2](https://github.com/Hannahh1425/cogs121/blob/master/M1/Prototype2.JPG)
+![storyboard1](https://github.com/Hannahh1425/cogs121/blob/master/M2/home.JPG)
+![storyboard2](https://github.com/Hannahh1425/cogs121/blob/master/M2/writingpage.JPG)
+
