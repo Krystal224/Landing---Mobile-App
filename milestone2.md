@@ -1,11 +1,4 @@
-Team Name: Little Yellow Duck
-
-
-Team member: Ziwen Zeng, Yuhan Wang
-
-
-
-We decided to implement a web app that gives self-media and those who are interested in self-media inspirations to 
+Our idea is similar to our proposal in milestone 1. We decided to implement a web app that gives self-media and those who are interested in self-media inspirations to 
 write popular articles. Baiscally, our web app provides analysis of existing popular articles, and provides recent trends and most popular articles. It will also give daily post about writing articles on social media.
 
 Target user population: 1. Self-media who wants to know recent trend.
