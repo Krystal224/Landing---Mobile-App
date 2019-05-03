@@ -1,3 +1,7 @@
+button, a {
+  cursor: pointer;
+}
+
 .container {
   width: 100%;
   padding-right: 15px;
@@ -7,14 +11,7 @@
 }
 
 
-
-.trend-data {
-
-  cursor: pointer;
-}
-
 .writing-data {
-  cursor: pointer;
   text-decoration: underline;
   font-size: 24px;
   font-weight: 600;

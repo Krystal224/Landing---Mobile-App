@@ -8,28 +8,33 @@ $(document).ready(() => {
       data = data.map((data, i) => {
         const tag = $("<button class=\"trend-data\" name=\"" + data + "\" id= " + "trend" + i + ">" + data + "</button>");
         tag.appendTo('#trends');
-      })
+
+      });
     }
   });
-  $.ajax({
-    url: 'news/',
-    type: 'GET',
-    dataType: 'json',
-    success: (data) => {
-      data = data.map((data, i) => {
-        console.log(data);
-        $('#news').html(data);
-      })
-    }
-  });
+
+
   $('body').on('click', '.trend-data', function (e) {
+    $('#news').empty();
     e.preventDefault();
     const target = this.id;
     const name = this.name;
-    console.log(name);
-    const requestURL = 'trends.html';
-    $(location).attr('href', requestURL);
+    const requestURL = 'trends/' + name;
+    $.ajax({
+      url: requestURL,
+      type: 'GET',
+      dataType: 'json',
+      success: (data) => {
+        console.log("sucesssssssssssss");
+        data = data.map((data, i) => {
+          const news = $("<h2>" + data.title + "</h2><a href=" + data.url + ">" + data.url + "</a><p>" + data.snippet + "</p>");          
+          news.appendTo('#news');
+        })
+      }
+    });
+    // $(location).attr('href', requestURL);
   });
+
 
 
 });

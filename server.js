@@ -9,14 +9,20 @@ var csv = require('fast-csv');
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('writings.db');
 
+const ejs = require('ejs');
+app.set('view engine', 'html');
+app.engine('html', ejs.renderFile);
 
 app.use(bodyParser.urlencoded({extended: true})); // hook up with your app
 //Interface with SQLite database
 // const sqlite3 = require('sqlite3');
 // const db = new sqlite3.Database('articles.db');
-
+//
 app.use(express.static('public'));
 
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname + '/public/home.html');
+// });
 
 app.get('/trends', (req, res) => {
   googleTrends.dailyTrends({
@@ -37,9 +43,10 @@ app.get('/trends', (req, res) => {
       res.send(results);
     }
   });
-})
+});
 
-app.get('/news', (req, res) => {
+app.get('/trends/:trendname', (req, res) => {
+  var trend = decodeURIComponent(req.params.trendname); // matches ':userid' above
   googleTrends.dailyTrends({
     geo: 'US',
   }, (err, results) => {
@@ -51,20 +58,23 @@ app.get('/news', (req, res) => {
       results = Object.values(JSON.parse(results));
       results = results[0].trendingSearchesDays;
       results = results[0].trendingSearches;
-      results = results.map(result => {
-        console.log(result.articles[0].snippet);
-        return result.articles[0].snippet;
+      const titles = results.map(result => {
+        return result.title;
       });
-      // results = Object.keys(results);
-      res.send(results);
+      var index;
+      titles.map((title, i) => {
+        if (title.query == trend) {
+          index = i;
+        }
+        return -1;
+      });
+      console.log(results[index].articles);
+
+      // res.send(results[index].articles);
+      // console.log("renderrrrrr");
+      res.send(results[index].articles);
     }
   });
-})
-
-
-app.get('trends/:trendname', (req, res) => {
-  const name = req.params.trendname; // matches ':userid' above
-
 })
 
 
