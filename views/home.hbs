@@ -1,14 +1,21 @@
 
 <!-- This is the Home view and will render into the main.hbs layout -->
 <link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="trends.js"></script>
 
-<h1>Trends</h1>
-<div>
-  {{#each tag}}
-    <button class="trend-data" id={{@index}} name="{{this}}">{{this}}</button>
-  {{/each}}
+<div class="banner">
+  <h1>Writing is easy.</h1>
+</div>
+<div class="container">
+  <h1>Today's Trends</h1>
+  <div>
+    {{#each tag}}
+      <button class="trend-data" id={{@index}} name="{{this}}">{{this}}</button>
+    {{/each}}
+  </div>
+  <h1>Tips</h1>
 </div>
 <!-- <!DOCTYPE html>
 <html lang="en">
