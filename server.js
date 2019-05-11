@@ -27,6 +27,7 @@ app.set('view engine', 'hbs');
 
 
 app.use(express.static('public'));
+app.use(express.static('public/img'));
 
 app.get('/', (req, res) => {
   googleTrends.dailyTrends({
@@ -39,13 +40,15 @@ app.get('/', (req, res) => {
       //Parse the JSON string into a Javascript object and get its value
       results = Object.values(JSON.parse(results));
       results = results[0].trendingSearchesDays;
-      results = results[0].trendingSearches;
+      results = results[0].trendingSearches;      
       results = results.map(result => {
         return result.title.query;
       });
       console.log(typeof(results));
       // results = Object.keys(results);
-      res.render('home', {tag: results});
+      res.render('home', {
+        tag: results
+      });
     }
   });
 });
