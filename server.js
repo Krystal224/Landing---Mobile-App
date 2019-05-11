@@ -2,29 +2,33 @@ const express = require('express');
 const app = express();
 //Google trends api
 const googleTrends = require('google-trends-api');
-const bodyParser = require('body-parser');
-// const writing = require('test.json');
-var fs = require('fs');
-var csv = require('fast-csv');
+//Database
+const fs = require('fs');
+const csv = require('fast-csv');
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('writings.db');
-
-const ejs = require('ejs');
-app.set('view engine', 'html');
-app.engine('html', ejs.renderFile);
-
+//Body parse
+const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true})); // hook up with your app
-//Interface with SQLite database
-// const sqlite3 = require('sqlite3');
-// const db = new sqlite3.Database('articles.db');
-//
-app.use(express.static('public'));
+//Handlebars
+const hbs = require( 'express-handlebars');
 
-// app.get('/', (req, res) => {
-//   res.sendFile(__dirname + '/public/home.html');
+
+app.engine('hbs', hbs({
+  defaultLayout: 'main.hbs'
+}));
+app.set('view engine', 'hbs');
+
+// app.get('/',(req, res)=>{
+//   console.log("called");
+//   res.render('home', {title: 'Home'});
 // });
 
-app.get('/trends', (req, res) => {
+
+
+app.use(express.static('public'));
+
+app.get('/', (req, res) => {
   googleTrends.dailyTrends({
     geo: 'US',
   }, (err, results) => {
@@ -39,13 +43,14 @@ app.get('/trends', (req, res) => {
       results = results.map(result => {
         return result.title.query;
       });
+      console.log(typeof(results));
       // results = Object.keys(results);
-      res.send(results);
+      res.render('home', {tag: results});
     }
   });
 });
 
-app.get('/trends/:trendname', (req, res) => {
+app.get('/:trendname', (req, res) => {
   var trend = decodeURIComponent(req.params.trendname); // matches ':userid' above
   googleTrends.dailyTrends({
     geo: 'US',
@@ -68,11 +73,11 @@ app.get('/trends/:trendname', (req, res) => {
         }
         return -1;
       });
-      console.log(results[index].articles);
-
-      // res.send(results[index].articles);
-      // console.log("renderrrrrr");
-      res.send(results[index].articles);
+      console.log("rendering trend news page");
+      res.render('news', {
+        tag: titles[index].query,
+        news: results[index].articles
+      });
     }
   });
 })

@@ -1,0 +1,14 @@
+
+<!-- This is the Home view and will render into the main.hbs layout -->
+<link rel="stylesheet" href="style.css">
+<script src="jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="trends.js"></script>
+
+<h1>{{tag}}</h1>
+<div>
+  {{#each news}}
+    <h3>{{{this.title}}}</h3>
+    <a hred={{this.url}}>{{this.url}}</a>
+    <p>{{this.snippet}}</p>
+  {{/each}}
+</div>

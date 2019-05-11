@@ -1,4 +1,16 @@
-<!DOCTYPE html>
+
+<!-- This is the Home view and will render into the main.hbs layout -->
+<link rel="stylesheet" href="style.css">
+<script src="jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="trends.js"></script>
+
+<h1>Trends</h1>
+<div>
+  {{#each tag}}
+    <button class="trend-data" id={{@index}} name="{{this}}">{{this}}</button>
+  {{/each}}
+</div>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Cogs121</title>
@@ -24,7 +36,7 @@
 </head>
 <body>
   <div class="container">
-    
+
     <h1>Trends</h1>
     <div id="trends"></div>
     <div id="news"></div>
@@ -33,30 +45,8 @@
       <button class="tips" id="tip1">What is a good title</button>
       <button class="tips" id="tip2">How to write good article</button>
 
-    	 <!-- {{#each object.0.data}}
-    	<div class="container">
-    	<div>
-        <text>{{title}}</text><br>
-    		<text>{{author}}</text><br>
-    		<text>{{claps}}</text><br>
-        <text>{{reading_time}}</text><br>
-        <text>{{link}}</text><br>
-    	</div>
-
-    	</div>
-    	<hr> -->
       <hr>
 
-
-  <!--   {{/each}} -->
-
-
-
-
   </div>
-      <!-- <div class="container">
-        <h1> Writing</h1>
-        <div id="writing"></div>
-      </div> -->
 </body>
-</html>
+</html> -->
