@@ -1,69 +1,52 @@
-// var fs = require('fs');
-// var csv = require('fast-csv');
-// fs.createReadStream('articles.csv')
-//   .pipe(csv())
-//   .on('data',function(data){
-//     console.log(data);
-//     fs.writeFileSync('articles.json', data);
-//   })
-//   .on('end',function(data){
-//     console.log('Read finished');
-//
-//   });
+console.log('running create database');
 
+const fs = require('fs');
+var jsonText = fs.readFileSync('new.json');
+// console.log(jsonText);
+var jsonObj = JSON.parse(jsonText);
 
-// let data = JSON.stringify(csv);
-// fs.writeFileSync('articles.json', data);
-
-// fs.readFile('test.json', 'utf8', function (err, data) {
-//   if (err) throw err;
-//   obj = JSON.parse(data);
-//   res.send(JSON.stringify(obj));
-// });
+// console.log(jsonObj[0]['author']);
 
 const sqlite3 = require('sqlite3');
-const fs = require('fs');
-const csv = require('fast-csv');
-const db = new sqlite3.Database('writings.db');
+const db = new sqlite3.Database('test.db');
 
-var writing = {author: [], claps: [], time: [], link: [], title: [], text: []};
-
-csv
-  .fromPath('articles.csv')
-  .on('data', data => {
-
-    writing.author = data[0];
-    writing.claps = data[1];
-    writing.time = data[2];
-    writing.link = data[3];
-    writing.title = data[4];
-    writing.text = data[5];
-  })
-  .on('end', () => {
-
-    console.log('Parsing complete!');
-  });
-
-
+// run each database statement *serially* one after another
+// (if you don't do this, then all statements will run in parallel,
+//  which we don't want)
+  //DROP TABLE [IF EXISTS] [schema_name.]author_article;
 db.serialize(() => {
   // create a new database table:
-  db.run("CREATE TABLE writings (author TEXT, claps NUMERIC, time NUMERIC, title TEXT)");
+   // DROP TABLE [IF EXISTS] [schema_name.]author_article;
+   // db.run("DROP TABLE author_article");
+   db.run("CREATE TABLE author_article (id NUM, author TEXT, title TEXT, claps TEXT, reading_time NUM, link TEXT, like NUM)");
+   //db.run( "DROP TABLE [IF EXISTS] [schema_name.]author_article");
+  // db.run("CREATE TABLE author_article (author TEXT, claps NUM, link TEXT)");
 
-    // insert 3 rows of data:
-    db.run('INSERT INTO writings VALUES ("Nityesh Agarwal", "2.4K", "13", "WTH does a neural network even learn??")');
-    db.run('INSERT INTO writings VALUES ("Emmanuel Ameisen", "935", "11", "Reinforcement Learning from scratch ��� Insight Data")');
-    db.run('INSERT INTO writings VALUES ("Gant Laborde", "1.3K", "7", "Machine Learning: how to go from Zero to Hero ��� freeCodeCamp")');
-    db.run('INSERT INTO writings VALUES ("William Koehrsen", "2.8K", "11", "Automated Feature Engineering in Python ��� Towards Data Science")');
-    db.run('INSERT INTO writings VALUES ("Conor Dewey", "1.4K", "7", "Python for Data Science: 8 Concepts You May Have Forgotten")');
-    db.run('INSERT INTO writings VALUES ("Justin Lee", "8.3K", "11", "Chatbots were the next big thing: what happened?")');
+  //load every author's information to this Database
+  // 1. sort the json file by claps
+  // how to link json file to here as an object and then get obj.key for value
+  // 2. insert json file one by one, so db.run 100 times
+  // 3. How to write on web page?
+
+  var i = 0
+  for (i = 0; i < 28; i++){
+    // console.log("Hello World");
+    // db.run("INSERT INTO author_article VALUES ('jsonObj[i]['author']' )");
+     //console.log(jsonObj[0].claps);
+     //console.log(jsonObj[0].link);
+    db.run("INSERT INTO author_article VALUES(?,?,?,?,?,?,?)", i, jsonObj[i].author, jsonObj[i].title,jsonObj[i].claps,jsonObj[i].reading_time, jsonObj[i].link, 0);
+  }
 
 
-    console.log('successfully created the writings table in pets.db');
 
+  // console.log('successfully created the users_to_pets table in pets.db');
 
-    db.each("SELECT author, claps, time FROM writings", (err, row) => {
-        console.log(row.author + ": " + row.claps + ' - ' + row.time);
-    });
+  // print them out to confirm their contents:
+  db.each("SELECT * FROM author_article", (err, row) => {
+      // console.log(row.name + ": " + row.job + ' - ' + row.pet);
+      // console.log(row);
+      //console.log(row.author + " " + row.claps + " " + row.link);
   });
+});
 
-  db.close();
+db.close();

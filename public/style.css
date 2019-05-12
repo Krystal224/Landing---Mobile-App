@@ -6,6 +6,11 @@ body {
   margin: 0;
 }
 
+.art{
+  border: 1px solid #DBDBDB;
+  margin: 10px;
+  box-shadow: 5px 5px 8px #DBDBDB;
+}
 
 .banner {
   width: 100%;
