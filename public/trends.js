@@ -7,7 +7,7 @@ $(document).ready(() => {
     e.preventDefault();
     const name = this.name;
     console.log(name);
-    const requestURL = '/' + name;
+    const requestURL = 'trends/' + name;
     // $.ajax({
     //   url: requestURL,
     //   type: 'GET',

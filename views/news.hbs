@@ -1,22 +1,26 @@
 
 <!-- This is the Home view and will render into the main.hbs layout -->
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="trends.js"></script>
+<script src="/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/trends.js"></script>
 
 <div class="container">
-  <h1>{{tag}}</h1>
+  <h2 class="tag-title">{{tag}}</h2>
   {{#each news}}
-  <div class="row">
-    <div class="col">
-        <h3>{{{this.title}}}</h3>
-        <a href={{this.url}}>{{this.url}}</a>
-        <p>{{{this.snippet}}}</p>
+    <div class="row news">
+
+        <div class="col-8">
+          <h5>{{{this.title}}}</h5>
+          <br />
+          <a href={{this.url}}>{{this.url}}</a>
+          <br />
+          <p>{{{this.snippet}}}</p>
+        </div>
+        <div class="col-4">
+          <img src="{{this.image.imageUrl}}" />
+        </div>
+      
     </div>
-    <div class="col">
-      <img src="{{this.image.imageUrl}}" />
-    </div>
-  </div>
   {{/each}}
 </div>
