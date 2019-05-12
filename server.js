@@ -53,8 +53,9 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/:trendname', (req, res) => {
-  var trend = req.params.trendname; // matches ':userid' above
+app.get('/trends/:trendid', (req, res) => {
+  var trend = req.params.trendid; // matches ':userid' above
+  console.log(req.params);
   googleTrends.dailyTrends({
     geo: 'US',
   }, (err, results) => {
@@ -76,7 +77,7 @@ app.get('/:trendname', (req, res) => {
         }
         return -1;
       });
-      console.log("rendering trend news page");      
+      console.log("rendering trend news page");
       res.render('news', {
         tag: titles[index].query,
         news: results[index].articles,

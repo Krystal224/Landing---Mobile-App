@@ -6,7 +6,6 @@ body {
   margin: 0;
 }
 
-
 .banner {
   width: 100%;
 }
@@ -30,9 +29,31 @@ body {
   margin-left: auto;
 }
 
+.news {
+  margin-bottom: 2em;  
+}
+
+.news img {
+  width: 40%;
+}
+
+.news h5 {
+  width: 100%;
+}
+
+.news a {
+  margin-bottom: 0.5em;
+  font-size: 14px;
+}
+
 .news p {
-  width: 50%;
-  margin-bottom: 100px;
+  margin-top: 0.5em;
+}
+
+.tag-title {
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .writing-data {
