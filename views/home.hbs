@@ -6,6 +6,54 @@
 <script src="/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/trends.js"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $.ajax('/fetchData', {
+      method: 'get'
+    })
+    .then(
+      function success(json) {
+        console.log("requesting to fetch data!");
+        console.log("success");
+        console.log(json);
+        $.each(json, function(i, item) {
+            $(".all_articles").append('<div id="' + json[i].id + '" class="article'+ i +' art"></div>');
+            $("<h3>" + json[i].title + "</h3>").appendTo( '.article' + i);
+            $("<p>" + 'Author: '+json[i].author + "    "+'Reading time: ' + json[i].reading_time+ "</p>").appendTo( '.article' + i);
+            $('<a href="' + json[i].link + '">link</a>'+"<hr/>").appendTo( '.article' + i);
+            $('<button onclick="updateLike(' + json[i].id + ')">Like  '+ json[i].like +'</button>' ).appendTo( '.article' + i);
+            // $("<p>" + json[i].author + "</p>").appendTo(" '.article' + i");
+            // $("<p>" + json[i].link + "</p>").appendTo(" '.article' + i");
+            // $( ".container" ).append("<h2>" + json[i].title + "</h2>");
+            // $( ".container" ).append("<p> Author: " + json[i].author +"</p>");
+            // $( ".container" ).append("<p> Link: " + json[i].link + "</p>");
+        })
+      },
+      function fail(data, status) {
+        console.log("fail");
+        console.log(data);
+        alert('Request failed.  Returned status of ' + status);
+      }
+    );
+  });
+  updateLike = (id) => {
+      $.ajax({
+        url: '/updateLike',
+        type: 'POST',
+        dataType : 'json',
+        // contentType: 'application/json',
+        data: {
+          article_id: id
+        },
+        success: (data) => {
+          $('#status').html(data.message);
+        }
+      });
+    }
+</script>
+
 <div class="banner">
   <h1>Writing is easy.</h1>
 </div>
@@ -16,45 +64,9 @@
       <button class="trend-data" id={{@index}} name="{{this}}">{{this}}</button>
     {{/each}}
   </div>
-  <h1>Tips</h1>
+
+</hr>
+  <h1>Learn From Articles</h1>
+  <div class="all_articles" id = "status"></div>
+
 </div>
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Cogs121</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="trends.js"></script>
-  <script type="text/javascript" src="writing.js"></script>
-
-  <script>
-  $(document).ready(() => {
-    $.ajax({
-      url: 'writing/',
-      type: 'GET',
-      dataType: 'json',
-      success: (data) => {
-        $('#writing').html(data);
-      }
-    });
-  });
-  </script>
-
-  <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-  <div class="container">
-
-    <h1>Trends</h1>
-    <div id="trends"></div>
-    <div id="news"></div>
-
-    <h1>Writing Tips</h1>
-      <button class="tips" id="tip1">What is a good title</button>
-      <button class="tips" id="tip2">How to write good article</button>
-
-      <hr>
-
-  </div>
-</body>
-</html> -->

@@ -3,15 +3,22 @@ const app = express();
 //Google trends api
 const googleTrends = require('google-trends-api');
 //Database
-const fs = require('fs');
-const csv = require('fast-csv');
-const sqlite3 = require('sqlite3');
-const db = new sqlite3.Database('writings.db');
+
 //Body parse
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true})); // hook up with your app
 //Handlebars
 const hbs = require( 'express-handlebars');
+
+// require('./create_database.js');
+const path = require('path');
+
+// use this library to interface with SQLite databases: https://github.com/mapbox/node-sqlite3
+
+//CHANGE HERE
+const sqlite3 = require('sqlite3');
+const db = new sqlite3.Database('test.db');
+
 
 
 app.engine('hbs', hbs({
@@ -23,8 +30,6 @@ app.set('view engine', 'hbs');
 //   console.log("called");
 //   res.render('home', {title: 'Home'});
 // });
-
-
 
 app.use(express.static('public'));
 app.use(express.static('public/img'));
@@ -96,16 +101,46 @@ app.get('/trends/:trendid', (req, res) => {
 //   });
 // })
 
-app.get('/writing', (req, res) => {
-  // db.all() fetches all results from an SQL query into the 'rows' variable:
-  db.all('SELECT title FROM writings', (err, rows) => {
-    console.log(rows);
-    rows = rows.map(rows => rows.title);
+// app.get('/writing', (req, res) => {
+//   // db.all() fetches all results from an SQL query into the 'rows' variable:
+//   db.all('SELECT title FROM writings', (err, rows) => {
+//     console.log(rows);
+//     rows = rows.map(rows => rows.title);
+//     res.send(rows);
+//   });
+// });
+
+
+app.get('/fetchData',(req, res, next) =>{
+  console.log("requesting to fetch data");
+  db.all('SELECT * FROM author_article', (err, rows) =>{
+    // console.log(rows);
+    // const articles = rows.map(e => e.title);
+    // res.render('home',{
+    //     send_data:rows
+    // });
     res.send(rows);
+    // res.sendFile(path.join(__dirname, 'index.html'))
   });
 });
 
+app.post('/updateLike', (req, res, next) => {
 
+  const { body } = req;
+  const { article_id } = body;
+  console.log(article_id);
+  db.get('SELECT like FROM author_article WHERE id = ' + article_id, (err, result) => {
+    console.log(result);
+    db.get('UPDATE author_article SET like = ' + (result.like + 1) + ' WHERE id = ' + article_id, (err,) => {
+      if (err) {
+        res.send({
+          succees: false,
+          message: "Internal error"
+        })
+      }
+    });
+  });
+})
 
 // start the server at URL: http://localhost:3000/
 app.listen(3000, () => {
