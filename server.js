@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
       //Parse the JSON string into a Javascript object and get its value
       results = Object.values(JSON.parse(results));
       results = results[0].trendingSearchesDays;
-      results = results[0].trendingSearches;      
+      results = results[0].trendingSearches;
       results = results.map(result => {
         return result.title.query;
       });
@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/:trendname', (req, res) => {
-  var trend = decodeURIComponent(req.params.trendname); // matches ':userid' above
+  var trend = req.params.trendname; // matches ':userid' above
   googleTrends.dailyTrends({
     geo: 'US',
   }, (err, results) => {
@@ -76,10 +76,10 @@ app.get('/:trendname', (req, res) => {
         }
         return -1;
       });
-      console.log("rendering trend news page");
+      console.log("rendering trend news page");      
       res.render('news', {
         tag: titles[index].query,
-        news: results[index].articles
+        news: results[index].articles,
       });
     }
   });
