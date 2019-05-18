@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended: true})); // hook up with your app
 //Handlebars
 const hbs = require( 'express-handlebars');
 
-// require('./create_database.js');
+ // require('./create_database.js');
 const path = require('path');
 
 // use this library to interface with SQLite databases: https://github.com/mapbox/node-sqlite3
@@ -124,23 +124,152 @@ app.get('/fetchData',(req, res, next) =>{
   });
 });
 
-app.post('/updateLike', (req, res, next) => {
+// app.post('/updateLike', (req, res, next) => {
+//
+//   const { body } = req;
+//   const { article_id } = body;
+//   console.log(article_id);
+//   db.get('SELECT like FROM author_article WHERE id = ' + article_id, (err, result) => {
+//     console.log(result);
+//     db.get('UPDATE author_article SET like = ' + (result.like + 1) + ' WHERE id = ' + article_id, (err,) => {
+//       if (err) {
+//         res.send({
+//           succees: false,
+//           message: "Internal error"
+//         })
+//       }
+//     });
+//   });
+// })
+
+
+app.post('/updateLikeTitle', (req, res, next) => {
 
   const { body } = req;
   const { article_id } = body;
   console.log(article_id);
-  db.get('SELECT like FROM author_article WHERE id = ' + article_id, (err, result) => {
+  db.get('SELECT like_title FROM author_article WHERE id = ' + article_id, (err, result) => {
     console.log(result);
-    db.get('UPDATE author_article SET like = ' + (result.like + 1) + ' WHERE id = ' + article_id, (err,) => {
+    let newLikes = result.like_title + 1;
+    db.get('UPDATE author_article SET like_title = ' + (result.like_title + 1) + ' WHERE id = ' + article_id, (err,) => {
       if (err) {
         res.send({
           succees: false,
           message: "Internal error"
         })
       }
+      else {
+        res.send({
+          newLikes: newLikes
+        });
+      }
     });
   });
 })
+
+app.post('/updateLikeContent', (req, res, next) => {
+
+  const { body } = req;
+  const { article_id } = body;
+  console.log(article_id);
+  db.get('SELECT like_content FROM author_article WHERE id = ' + article_id, (err, result) => {
+    console.log(result);
+    let newLikes = result.like_content + 1;
+    db.get('UPDATE author_article SET like_content = ' + (result.like_content + 1) + ' WHERE id = ' + article_id, (err,) => {
+      if (err) {
+        res.send({
+          succees: false,
+          message: "Internal error"
+        })
+      }
+      else {
+        res.send({
+          newLikes: newLikes
+        });
+      }
+    });
+  });
+})
+
+app.post('/updateLikeLayout', (req, res, next) => {
+
+  const { body } = req;
+  const { article_id } = body;
+  console.log(article_id);
+  db.get('SELECT like_layout FROM author_article WHERE id = ' + article_id, (err, result) => {
+    console.log(result);
+    let newLikes = result.like_layout + 1;
+    db.get('UPDATE author_article SET like_layout = ' + (result.like_layout + 1) + ' WHERE id = ' + article_id, (err,) => {
+      if (err) {
+        res.send({
+          succees: false,
+          message: "Internal error"
+        })
+      }
+      else {
+        res.send({
+          newLikes: newLikes
+        });
+      }
+    });
+  });
+})
+
+
+app.post('/sort_by_title',(req, res, next) =>{
+  console.log("server sort by title")
+  db.all('SELECT * FROM author_article ORDER BY like_title DESC;', (err, rows) =>{
+
+    if (err) {
+      res.send({
+        succees: false,
+        message: "Internal error"
+      })
+    }
+    else {
+      res.send(rows)
+      console.log(rows)
+    }
+
+  });
+});
+
+
+app.post('/sort_by_content',(req, res, next) =>{
+  console.log("server sort by content")
+  db.all('SELECT * FROM author_article ORDER BY like_content DESC;', (err, rows) =>{
+
+    if (err) {
+      res.send({
+        succees: false,
+        message: "Internal error"
+      })
+    }
+    else {
+      res.send(rows)
+      console.log(rows)
+    }
+
+  });
+});
+
+app.post('/sort_by_layout',(req, res, next) =>{
+  console.log("server sort by layout")
+  db.all('SELECT * FROM author_article ORDER BY like_layout DESC;', (err, rows) =>{
+
+    if (err) {
+      res.send({
+        succees: false,
+        message: "Internal error"
+      })
+    }
+    else {
+      res.send(rows)
+      console.log(rows)
+    }
+
+  });
+});
 
 // start the server at URL: http://localhost:3000/
 app.listen(3000, () => {

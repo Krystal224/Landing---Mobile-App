@@ -18,7 +18,9 @@ db.serialize(() => {
   // create a new database table:
    // DROP TABLE [IF EXISTS] [schema_name.]author_article;
    // db.run("DROP TABLE author_article");
-   db.run("CREATE TABLE author_article (id NUM, author TEXT, title TEXT, claps TEXT, reading_time NUM, link TEXT, like NUM)");
+   db.run("CREATE TABLE author_article (id NUM, author TEXT, title TEXT, claps TEXT, reading_time NUM, link TEXT, like_title NUM, like_content NUM,like_layout NUM)");
+
+   // db.run("CREATE TABLE author_article (id NUM, author TEXT, title TEXT, claps TEXT, reading_time NUM, link TEXT, like NUM)");
    //db.run( "DROP TABLE [IF EXISTS] [schema_name.]author_article");
   // db.run("CREATE TABLE author_article (author TEXT, claps NUM, link TEXT)");
 
@@ -34,7 +36,7 @@ db.serialize(() => {
     // db.run("INSERT INTO author_article VALUES ('jsonObj[i]['author']' )");
      //console.log(jsonObj[0].claps);
      //console.log(jsonObj[0].link);
-    db.run("INSERT INTO author_article VALUES(?,?,?,?,?,?,?)", i, jsonObj[i].author, jsonObj[i].title,jsonObj[i].claps,jsonObj[i].reading_time, jsonObj[i].link, 0);
+     db.run("INSERT INTO author_article VALUES(?,?,?,?,?,?,?,?,?)", i, jsonObj[i].author, jsonObj[i].title,jsonObj[i].claps,jsonObj[i].reading_time, jsonObj[i].link, 0,0,0);
   }
 
 
