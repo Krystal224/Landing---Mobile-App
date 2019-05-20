@@ -8,19 +8,14 @@
 <div class="container">
   <h2 class="tag-title">{{tag}}</h2>
   {{#each news}}
-    <div class="row news">
-
-        <div class="col-8">
-          <h5>{{{this.title}}}</h5>
-          <br />
-          <a href={{this.url}}>{{this.url}}</a>
-          <br />
-          <p>{{{this.snippet}}}</p>
-        </div>
-        <div class="col-4">
-          <img src="{{this.image.imageUrl}}" />
-        </div>
-      
-    </div>
+    <h5>{{{this.title}}}</h5>
+    <p>
+      Source:
+      <a href={{this.url}}>{{this.source}}</a>
+    </p>
+    <p>
+      {{{this.snippet}}}
+      <a href={{this.url}}>Read full article</a>
+    </p>
   {{/each}}
 </div>

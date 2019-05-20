@@ -22,7 +22,9 @@ const db = new sqlite3.Database('test.db');
 
 
 app.engine('hbs', hbs({
-  defaultLayout: 'main.hbs'
+  defaultLayout: 'main.hbs',
+  layoutsDir: path.join(__dirname, 'views/layouts'),
+  partialsDir: 'views/partials/',
 }));
 app.set('view engine', 'hbs');
 
@@ -83,6 +85,7 @@ app.get('/trends/:trendid', (req, res) => {
         return -1;
       });
       console.log("rendering trend news page");
+      console.log(results[0]);
       res.render('news', {
         tag: titles[index].query,
         news: results[index].articles,
