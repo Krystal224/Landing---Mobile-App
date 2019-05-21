@@ -8,7 +8,7 @@ const googleTrends = require('google-trends-api');
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true})); // hook up with your app
 //Handlebars
-const hbs = require( 'express-handlebars');
+const exphbs = require( 'express-handlebars');
 
  // require('./create_database.js');
 const path = require('path');
@@ -20,16 +20,12 @@ const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('test.db');
 
 
-
-app.engine('hbs', hbs({
-  defaultLayout: 'main.hbs'
-}));
-app.set('view engine', 'hbs');
-
-// app.get('/',(req, res)=>{
-//   console.log("called");
-//   res.render('home', {title: 'Home'});
-// });
+var hbs = exphbs.create({
+  defaultLayout: 'main',
+  partialsDir: ['views/partials/']
+});
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 app.use(express.static('public'));
 app.use(express.static('public/img'));
