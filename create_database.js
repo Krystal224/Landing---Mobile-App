@@ -17,7 +17,7 @@ const db = new sqlite3.Database('test.db');
 db.serialize(() => {
   // create a new database table:
    // DROP TABLE [IF EXISTS] [schema_name.]author_article;
-   // db.run("DROP TABLE author_article");
+   db.run("DROP TABLE author_article");
    db.run("CREATE TABLE author_article (id NUM, author TEXT, title TEXT, claps TEXT, reading_time NUM, link TEXT, like_title NUM, like_content NUM,like_layout NUM)");
 
    // db.run("CREATE TABLE author_article (id NUM, author TEXT, title TEXT, claps TEXT, reading_time NUM, link TEXT, like NUM)");
@@ -31,7 +31,7 @@ db.serialize(() => {
   // 3. How to write on web page?
 
   var i = 0
-  for (i = 0; i < 28; i++){
+  for (i = 0; i < 99; i++){
     // console.log("Hello World");
     // db.run("INSERT INTO author_article VALUES ('jsonObj[i]['author']' )");
      //console.log(jsonObj[0].claps);
