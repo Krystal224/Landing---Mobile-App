@@ -25,7 +25,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: 300px;
+  height: 90%;
 }
 
 .container {
@@ -34,6 +34,19 @@ body {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+}
+
+.trend-data {
+  font-family: "Arial Narrow", Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 0.35em 1em ;
+  /* background: linear-gradient(rgba(254, 218, 70, 0.7), rgba(254, 218, 70, 1), rgba(254, 218, 70, 0.7));    */
+  background: linear-gradient(rgba(254, 218, 70, 0.6),rgba(254, 218, 70, 1));
+  border-radius: 20px;
+  margin-bottom: 0.5em;
+  margin-right: 0.5em;
+  border: 2px solid #feda46;
 }
 
 .news {
@@ -97,9 +110,22 @@ li {
   margin-right: 1em;
 }
 
+.nav-bookmark i {
+  color: yellow;
+}
+
 .my-source {
   margin-top: 3em;
 }
+
+#bookmarks {
+  margin-bottom: 2em;
+}
+
+.delete {
+  margin-bottom: 2em;
+}
+
 
 @media (min-width: 576px) {
   .container {
