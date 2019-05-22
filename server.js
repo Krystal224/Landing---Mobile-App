@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended: true})); // hook up with your app
 //Handlebars
 const exphbs = require( 'express-handlebars');
 
- // require('./create_database.js');
+ require('./create_database.js');
 const path = require('path');
 
 // use this library to interface with SQLite databases: https://github.com/mapbox/node-sqlite3
@@ -174,7 +174,7 @@ app.post('/sourcedata', (req, res) => {
 
 app.get('/fetchData',(req, res, next) =>{
   console.log("requesting to fetch data");
-  db.all('SELECT * FROM author_article', (err, rows) =>{
+  db.all('SELECT * FROM author_article LIMIT 3', (err, rows) =>{
     // console.log(rows);
     // const articles = rows.map(e => e.title);
     // res.render('home',{
