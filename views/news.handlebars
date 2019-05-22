@@ -6,14 +6,14 @@
 
 <script typt="text/javascript">
   $(document).ready(() => {
-
     $('body').on('click', '.mark', function (e) {
       console.log("clickkkkkked");
       e.preventDefault();
       var title = this.name;
       var link = this.value;
+      var id = this.id;
       console.log(title);
-      console.log(link);
+      console.log(id);
       $.ajax({
         // all URLs are relative to http://localhost:3000/
         url: '/bookmarks',
@@ -23,8 +23,10 @@
                 link: link,
               },
         success: (data) => {
-          console.log('succes');
-          console.log(data);
+          console.log("id");
+          let added = '#mark' + id;
+          $(added).append("Added to <a href='/source'>Bookmark</a>");
+          console.log("called");
         }
       });
     });
@@ -35,15 +37,24 @@
 <div class="container">
   <h2 class="tag-title">{{tag}}</h2>
   {{#each news as |news index|}}
-    <h5>{{{news.title}}}</h5>
-    <p>
-      Source:
-      <a href={{news.url}}>{{news.source}}</a>
-    </p>
-    <p>
-      {{{news.snippet}}}
-      <a href={{news.url}}>Read full article</a>
-    </p>
-    <button class="mark" name="{{{news.title}}}" value="{{{news.url}}}">Add to MySource</button>
+  <div class="news">
+    <div class="row">
+      <div class="col-11">
+      <span>{{{news.title}}}</span>
+      </div>
+      <div class="col-1">
+        <button class="mark" id="{{index}}" name="{{{news.title}}}" value="{{{news.url}}}"><i class="far fa-star"></i></button>
+        <p id="mark{{index}}"></p>
+      </div>
+    </div>
+      <i>
+        Source:
+        <a href={{news.url}}>{{news.source}}</a>
+      </i>
+      <p>
+        {{{news.snippet}}}
+        <a href={{news.url}}>Read full article</a>
+      </p>
+  </div>
   {{/each}}
 </div>

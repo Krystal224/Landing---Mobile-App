@@ -31,12 +31,12 @@
           let hidetitle = json[i].title;
 
           $(".all_articles").append('<div id="' + json[i].id + '" class="article'+ i +' art"></div>');
+          $("<button class=add_article id=" + i + " name=\"" + json[i].title + "\" value=\"" + json[i].link + "\"><i class='far fa-star'></i></button>" ).appendTo( '.article' + i);
+          $('<span id=added' + i + '></span>').appendTo('.article' + i);
           $('<a href="' + json[i].link + '">'+json[i].title+'</a>').appendTo( '.article' + i);
           // $('<h3 href="' + json[i].link + '">' + json[i].title + '</h3>').appendTo( '.article' + i);
           $("<p>" + json[i].author + '&nbsp&nbsp&nbsp&nbsp&nbsp' + json[i].reading_time +' min read '+'&nbsp&nbsp&nbsp&nbsp&nbsp'+json[i].claps+ '&nbsp'+ 'claps'+ "</p>").appendTo( '.article' + i);
           // $("<button class=btnleft add_article name=\"" + json[i].title + "\" value=\"" + json[i].link + "\">Collect board</button>" ).appendTo( '.article' + i);
-          $("<button class=btnleft add_article name=\"" + json[i].title + "\" value=\"" + json[i].link + "\">Collect board</button>" ).appendTo( '.article' + i);
-
           $('<button class = "btneach btntitle" id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
           $('<button class = "btneach btncontent" id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Content  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
           $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
@@ -72,7 +72,8 @@
     e.preventDefault();
     var title = this.name;
     var link = this.value;
-    console.log(title);
+    var id = this.id;
+    console.log(id);
 
     $.ajax({
       // all URLs are relative to http://localhost:3000/
@@ -83,7 +84,8 @@
               link: link
             },
       success: (data) => {
-        console.log('sucess');
+        $('#added'+id).append("<a href='/source' class='added'>Bookmarked</a>");
+        console.log('sucessssssssss');
       }
     });
   });
@@ -174,12 +176,11 @@ sort_title = () => {
         $(".all_articles").append('<div id="' + json[i].id + '" class="article'+ i +' art"></div>');
         $('<a href="' + json[i].link + '">'+json[i].title+'</a>').appendTo( '.article' + i);
         $("<p>" + json[i].author + '&nbsp&nbsp&nbsp&nbsp&nbsp' + json[i].reading_time +' min read '+'&nbsp&nbsp&nbsp&nbsp&nbsp'+json[i].claps+ '&nbsp'+ 'claps'+ "</p>").appendTo( '.article' + i);
-        $("<button class=btnleft add_article name=\"" + json[i].title + "\" value=\"" + json[i].link + "\">Collect board</button>" ).appendTo( '.article' + i);
-
-
-        $('<button class = "btneach" id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
-        $('<button class = "btneach" id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Content  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
-        $('<button class = "btneach" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
+        $("<button class=add_article id=" + i + " name=\"" + json[i].title + "\" value=\"" + json[i].link + "\"><i class='far fa-star'></i></button>" ).appendTo( '.article' + i);
+        $('<span id=added' + i + '></span>').appendTo('.article' + i);
+        $('<button class = "btneach btntitle" id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btncontent" id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Content  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
 
       })
     },
@@ -216,12 +217,12 @@ sort_content = () => {
         $(".all_articles").append('<div id="' + json[i].id + '" class="article'+ i +' art"></div>');
         $('<a href="' + json[i].link + '">'+json[i].title+'</a>').appendTo( '.article' + i);
         $("<p>" + json[i].author + '&nbsp&nbsp&nbsp&nbsp&nbsp' + json[i].reading_time +' min read '+'&nbsp&nbsp&nbsp&nbsp&nbsp'+json[i].claps+ '&nbsp'+ 'claps'+ "</p>").appendTo( '.article' + i);
-        $("<button class=btnleft add_article name=\"" + json[i].title + "\" value=\"" + json[i].link + "\">Collect board</button>" ).appendTo( '.article' + i);
+        $("<button class=add_article id=" + i + " name=\"" + json[i].title + "\" value=\"" + json[i].link + "\"><i class='far fa-star'></i></button>" ).appendTo( '.article' + i);
+        $('<span id=added' + i + '></span>').appendTo('.article' + i);
 
-
-        $('<button class = "btneach" id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
-        $('<button class = "btneach" id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Content  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
-        $('<button class = "btneach" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btntitle" id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btncontent" id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Content  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
 
       })
     },
@@ -260,12 +261,12 @@ sort_layout = () => {
         $(".all_articles").append('<div id="' + json[i].id + '" class="article'+ i +' art"></div>');
         $('<a href="' + json[i].link + '">'+json[i].title+'</a>').appendTo( '.article' + i);
         $("<p>" + json[i].author + '&nbsp&nbsp&nbsp&nbsp&nbsp' + json[i].reading_time +' min read '+'&nbsp&nbsp&nbsp&nbsp&nbsp'+json[i].claps+ '&nbsp'+ 'claps'+ "</p>").appendTo( '.article' + i);
-        $("<button class=btnleft add_article name=\"" + json[i].title + "\" value=\"" + json[i].link + "\">Collect board</button>" ).appendTo( '.article' + i);
+        $("<button class=add_article id=" + i + " name=\"" + json[i].title + "\" value=\"" + json[i].link + "\"><i class='far fa-star'></i></button>" ).appendTo( '.article' + i);
+        $('<span id=added' + i + '></span>').appendTo('.article' + i);
 
-
-        $('<button class = "btneach" id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
-        $('<button class = "btneach" id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Content  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
-        $('<button class = "btneach" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btntitle" id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btncontent" id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Content  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
 
       })
     },
@@ -294,24 +295,23 @@ sort_layout = () => {
 
 {{> header}}
 <div class="content">
-<div class="banner">
+<div class="banner vh-100">
   <h1>Landing</h1>
   <p style="font-size: 40px; font-weight:600">Pack your way of We Media writing with landing!</p1>
-  <p style="font-size: 25px;font-weight:600;"> ✶ &nbsp Latest trends &nbsp ✶ &nbsp  Heated topic&nbsp  ✶ &nbsp  Useful writing skills&nbsp
-     ✶ &nbsp Large database of successful articles.<p2>
+  <p style="font-size: 25px;font-weight:600;"> ✶ &nbsp Latest trends &nbsp<br/> ✶ &nbsp  Heated topic&nbsp <br/> ✶ &nbsp  Useful writing skills&nbsp
+     <br/>✶ &nbsp Large database of successful articles.<p2>
 
 
 
 </div>
-<div class="container">●
-  <h1>Today's Trends</h1>
-
-
-  <div>
-    {{#each tag}}
-      <button class="trend-data" id={{@index}} name="{{this}}">{{this}}</button>
-    {{/each}}
-  </div>
+<div class="trend">
+    <h1>Today's Trends</h1>
+    <p>Get everyday's hot topic at the earliest time. Refresh every hour.</p>
+    <div class="container">
+      {{#each tag}}
+        <button class="trend-data" name="{{this}}">{{this}}</button>
+      {{/each}}
+    </div>
 
 </hr>
 </div>

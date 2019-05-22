@@ -2,6 +2,7 @@
 <!-- This is the Home view and will render into the main.hbs layout -->
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 <script src="/jquery-3.3.1.min.js"></script>
 
 <script typt="text/javascript">
@@ -13,7 +14,7 @@
       success: (data) => {
         console.log("sucessssss");
         data.map(data => {
-          $('#bookmarks').append("<div>" + data.title + "</div> <a href=\"" + data.link + "\">" + "Link to news" + "</a> <button class=delete name=\"" + data.title + "\"> Delete </button>");
+          $('#bookmarks').append("<div class=bookmark><span><a href=\"" + data.link + "\">" + data.title + "</a></span><button class=delete name=\"" + data.title + "\"><i class='far fa-trash-alt'></i></button> </div>");
         });
       },
     });
@@ -35,7 +36,7 @@
         success: (data) => {
           $('#bookmarks').empty();
           data.map(data => {
-            $('#bookmarks').append("<div>" + data.title + "</div> <a href=" + data.link + ">" + data.link + "</a> <button class=delete name=\"" + data.title + "\"> Delete </button>");
+            $('#bookmarks').append("<div class=bookmark><span><a href=\"" + data.link + "\">" + data.title + "</a></span><button class=delete name=\"" + data.title + "\"><i class='far fa-trash-alt'></i></button> </div>");
           });
         }
       });
@@ -46,6 +47,6 @@
 
 {{> header}}
 <div class="container">
-  <h1 class="my-source">My Source page</h1>
+  <h1 class="my-source">Bookmarks</h1>
   <div id="bookmarks"></div>
 </div>

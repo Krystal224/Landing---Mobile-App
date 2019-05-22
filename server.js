@@ -113,6 +113,8 @@ app.post('/bookmarks', (req, res) => {
               res.send({message: 'error in app.post(/users)'});
             } else {
               console.log("sucesss");
+              res.send("success");
+              
             }
           }
         );
