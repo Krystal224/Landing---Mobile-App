@@ -87,6 +87,71 @@ app.get('/trends/:trendid', (req, res) => {
   });
 })
 
+app.post('/bookmarks', (req, res) => {
+  console.log("herr");
+  console.log(req.body.title);
+  //check duplicates
+  db.all('SELECT title FROM bookmarks WHERE title=$title',
+    {
+      $title: req.body.title
+    },
+    (err, rows) => {
+      if (rows.length > 0) {
+        console.log("existss");
+      }
+      else {
+        db.run(
+          'INSERT INTO bookmarks VALUES ($title, $link)',
+          // parameters to SQL query:
+          {
+            $title: req.body.title,
+            $link: req.body.link,
+          },
+          // callback function to run when the query finishes:
+          (err) => {
+            if (err) {
+              res.send({message: 'error in app.post(/users)'});
+            } else {
+              console.log("sucesss");
+            }
+          }
+        );
+      }
+    }
+  );
+});
+
+app.get('/source', (req, res) => {
+  res.render('mySource');
+});
+
+app.get('/sourcedata', (req, res) => {
+  db.all('SELECT * FROM bookmarks', (err, rows) => {
+    // console.log(rows);
+    // res.send(rows);
+    res.send(rows);
+  });
+});
+
+app.post('/sourcedata', (req, res) => {
+  console.log("sssssss");
+  console.log(req.body.title);
+  db.run('DELETE FROM bookmarks WHERE title=$title',
+    {
+      $title: req.body.title
+    },
+    (err) => {
+      if (err) {
+        res.send({message: "error!"});
+      } else {
+        db.all('SELECT * FROM bookmarks', (err, rows) =>{
+          res.send(rows);
+        });
+      }
+    }
+  );
+});
+
 
 // app.get('/Writing', function (req, res) {
 //   fs.readFile('test.json', 'utf8', function (err, data) {

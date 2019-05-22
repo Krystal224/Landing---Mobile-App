@@ -1,0 +1,50 @@
+
+<!-- This is the Home view and will render into the main.hbs layout -->
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="/jquery-3.3.1.min.js"></script>
+
+<script typt="text/javascript">
+  $(document).ready(() => {
+    $.ajax({
+      url: '/sourcedata',
+      type: 'GET',
+      dataType : 'json',
+      success: (data) => {
+        console.log("sucessssss");
+        data.map(data => {
+          $('#bookmarks').append("<div>" + data.title + "</div> <a href=\"" + data.link + "\">" + "Link to news" + "</a> <button class=delete name=\"" + data.title + "\"> Delete </button>");
+        });
+      },
+    });
+
+    $('body').on('click', '.delete', function (e) {
+      console.log("clititlekkked");
+      e.preventDefault();
+      var title = this.name;
+
+      console.log(title);
+
+      $.ajax({
+        // all URLs are relative to http://localhost:3000/
+        url: '/sourcedata',
+        type: 'POST', // <-- this is POST, not GET
+        data: {
+                title: title,
+              },
+        success: (data) => {
+          $('#bookmarks').empty();
+          data.map(data => {
+            $('#bookmarks').append("<div>" + data.title + "</div> <a href=" + data.link + ">" + data.link + "</a> <button class=delete name=\"" + data.title + "\"> Delete </button>");
+          });
+        }
+      });
+    });
+  });
+
+</script>
+
+<div>
+  <h1>My Source page</h1>
+  <div id="bookmarks"></div>
+</div>

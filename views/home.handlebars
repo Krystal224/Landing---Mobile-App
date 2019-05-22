@@ -36,6 +36,7 @@
           $('<button id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Like Title  '+ json[i].like_title +'</button>' ).appendTo( '.article' + i);
           $('<button id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Like Content  '+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
           $('<button id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Like Layout  '+ json[i].like_layout +'</button>' ).appendTo( '.article' + i);
+          $("<button class=add_article name=\"" + json[i].title + "\" value=\"" + json[i].link + "\">Add to bookmark</button>" ).appendTo( '.article' + i);
 
         })
       },
@@ -61,6 +62,28 @@
   //       }
   //     });
   //   }
+
+  $('body').on('click', '.add_article', function (e) {
+    console.log("clititlekkked");
+    e.preventDefault();
+    var title = this.name;
+    var link = this.value;
+    console.log(title);
+
+    $.ajax({
+      // all URLs are relative to http://localhost:3000/
+      url: '/bookmarks',
+      type: 'POST', // <-- this is POST, not GET
+      data: {
+              title: title,
+              link: link
+            },
+      success: (data) => {
+        console.log('sucess');
+      }
+    });
+  });
+
 
   updateLikeTitle = (id) => {
   $.ajax({
@@ -151,6 +174,7 @@ sort_title = () => {
           $('<button id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Like Title  '+ json[i].like_title +'</button>' ).appendTo( '.article' + i);
           $('<button id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Like Content  '+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
           $('<button id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Like Layout  '+ json[i].like_layout +'</button>' ).appendTo( '.article' + i);
+          $("<button class=add_article name=\"" + json[i].title + "\" value=\"" + json[i].link + "\">Add to bookmark</button>" ).appendTo( '.article' + i);
 
       })
     },
@@ -162,7 +186,6 @@ sort_title = () => {
       alert('Request failed.  Returned status of ' + status);
     }
   );
-
 
 }
 
@@ -193,6 +216,7 @@ sort_content = () => {
           $('<button id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Like Title  '+ json[i].like_title +'</button>' ).appendTo( '.article' + i);
           $('<button id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Like Content  '+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
           $('<button id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Like Layout  '+ json[i].like_layout +'</button>' ).appendTo( '.article' + i);
+          $("<button class=add_article name=\"" + json[i].title + "\" value=\"" + json[i].link + "\">Add to bookmark</button>" ).appendTo( '.article' + i);
 
       })
     },
@@ -236,6 +260,7 @@ sort_layout = () => {
           $('<button id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Like Title  '+ json[i].like_title +'</button>' ).appendTo( '.article' + i);
           $('<button id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Like Content  '+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
           $('<button id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Like Layout  '+ json[i].like_layout +'</button>' ).appendTo( '.article' + i);
+          $("<button class=add_article name=\"" + json[i].title + "\" value=\"" + json[i].link + "\">Add to bookmark</button>" ).appendTo( '.article' + i);
 
       })
     },
@@ -254,6 +279,7 @@ sort_layout = () => {
 </script>
 
 {{> header}}
+<div class="content">
 <div class="banner">
   <h1>Writing is easy.</h1>
 </div>
@@ -280,4 +306,5 @@ sort_layout = () => {
 
   <div class="all_articles" id = "status"></div>
 
+</div>
 </div>

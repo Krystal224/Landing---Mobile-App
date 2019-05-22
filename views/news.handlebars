@@ -3,19 +3,46 @@
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="/trends.js"></script>
+
+<script typt="text/javascript">
+  $(document).ready(() => {
+
+    $('body').on('click', '.mark', function (e) {
+      console.log("clickkkkkked");
+      e.preventDefault();
+      var title = this.name;
+      var link = this.value;
+      console.log(title);
+      console.log(link);
+      $.ajax({
+        // all URLs are relative to http://localhost:3000/
+        url: '/bookmarks',
+        type: 'POST', // <-- this is POST, not GET
+        data: {
+                title: title,
+                link: link,
+              },
+        success: (data) => {
+          console.log('succes');
+          console.log(data);
+        }
+      });
+    });
+  });
+</script>
 
 <div class="container">
   <h2 class="tag-title">{{tag}}</h2>
-  {{#each news}}
-    <h5>{{{this.title}}}</h5>
+  {{#each news as |news index|}}
+    <h5>{{{news.title}}}</h5>
     <p>
       Source:
-      <a href={{this.url}}>{{this.source}}</a>
+      <a href={{news.url}}>{{news.source}}</a>
     </p>
     <p>
-      {{{this.snippet}}}
-      <a href={{this.url}}>Read full article</a>
+      {{{news.snippet}}}
+      <a href={{news.url}}>Read full article</a>
     </p>
+    <button class="mark" name="{{{news.title}}}" value="{{{news.url}}}">Add to MySource</button>
   {{/each}}
 </div>

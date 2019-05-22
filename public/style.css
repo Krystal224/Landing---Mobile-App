@@ -68,6 +68,34 @@ body {
   font-weight: 600;
 }
 
+ul {
+  position: fixed;
+  width: 100%;
+  list-style-type: none;
+  height: 3em;
+  padding-top: 0.5em;
+  padding-left: 0;
+  top: 0;
+  margin: 0;
+  background-color: white;
+
+}
+
+li {
+  font-size: 32px;
+
+}
+
+.nav-home {
+  float: left;
+  margin-left: 1em;
+}
+
+.nav-bookmark {
+  float: right;
+  margin-right: 1em;
+}
+
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
