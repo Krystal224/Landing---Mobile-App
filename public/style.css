@@ -18,7 +18,8 @@ body {
 
 .banner h1 {
   text-align: center;
-  margin: 0;
+  margin-top: 1em;
+  padding-top: 1em;
   background-image: url("home2.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -58,7 +59,7 @@ body {
 
 .tag-title {
   text-align: center;
-  margin-top: 1em;
+  margin-top: 3em;
   margin-bottom: 1em;
 }
 
@@ -94,6 +95,10 @@ li {
 .nav-bookmark {
   float: right;
   margin-right: 1em;
+}
+
+.my-source {
+  margin-top: 3em;
 }
 
 @media (min-width: 576px) {
