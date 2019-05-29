@@ -13,6 +13,7 @@
       dataType : 'json',
       success: (data) => {
         console.log("sucessssss");
+
         data.map(data => {
           $('#bookmarks').append("<div class=bookmark><span><a href=\"" + data.link + "\">" + data.title + "</a></span><button class=delete name=\"" + data.title + "\"><i class='far fa-trash-alt'></i></button> </div>");
         });

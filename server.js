@@ -82,24 +82,30 @@ app.get('/trends/:trendid', (req, res) => {
       var icon = []
       var saved = "fas fa-star";
       var unsaved = "far fa-star";
-      results[index].articles.map(article => {
+      results[index].articles.map((article, i) => {
         var t = article.title;
-        db.all('SELECT title FROM bookmarks WHERE title=$title',
-          {
-            $title: t
-          },
-          (err, rows) => {
-            if (rows.length > 0) {
-              console.log("exists");
-              icon.push("fas fa-star");
+        t = t.replace(/&#39;/g, "'");
+        console.log("unnnnnnnescape");
+        console.log(t);
+        db.serialize(() => {
+          db.all('SELECT title FROM bookmarks WHERE title=$title',
+            {
+              $title: t
+            },
+            (err, rows) => {
+              if (rows.length > 0) {
+                console.log("exists");
+                icon.push("fas fa-star");
+              }
+              else {
+                console.log("nooo");
+                icon.push("far fa-star");
+              }
             }
-            else {
-              console.log("nooo");
-              icon.push("far fa-star");
-            }
-          }
-        );
-      });
+          );
+        });
+        })
+
 
       setTimeout(function(){
         res.render('news', {
@@ -115,6 +121,8 @@ app.get('/trends/:trendid', (req, res) => {
 
 app.post('/bookmarks', (req, res) => {
   console.log("herr");
+  console.log(req.body.title);
+  console.log("bookmarktitle");
   console.log(req.body.title);
   //check duplicates
   db.all('SELECT title FROM bookmarks WHERE title=$title',
@@ -213,21 +221,26 @@ app.get('/fetchData',(req, res, next) =>{
     var unsaved = "far fa-star";
     rows.map(article => {
       var t = article.title;
-      db.all('SELECT title FROM bookmarks WHERE title=$title',
-        {
-          $title: t
-        },
-        (err, rows) => {
-          if (rows.length > 0) {
-            console.log("exists");
-            icon.push("fas fa-star");
+      t = t.replace(/&#39;/g, "'");
+      console.log("title");
+      console.log(t);
+      db.serialize(() => {
+        db.all('SELECT title FROM bookmarks WHERE title=$title',
+          {
+            $title: t
+          },
+          (err, rows) => {
+            if (rows.length > 0) {
+              console.log("exists");
+              icon.push("fas fa-star");
+            }
+            else {
+              console.log("nooo");
+              icon.push("far fa-star");
+            }
           }
-          else {
-            console.log("nooo");
-            icon.push("far fa-star");
-          }
-        }
-      );
+        );
+      });
     });
 
     setTimeout(function(){
@@ -276,21 +289,26 @@ app.post('/expand1',(req, res, next) =>{
     var unsaved = "far fa-star";
     rows.map(article => {
       var t = article.title;
-      db.all('SELECT title FROM bookmarks WHERE title=$title',
-        {
-          $title: t
-        },
-        (err, rows) => {
-          if (rows.length > 0) {
-            console.log("exists");
-            icon.push("fas fa-star");
+      t = t.replace(/&#39;/g, "'");
+      console.log("title");
+      console.log(t);
+      db.serialize(() => {
+        db.all('SELECT title FROM bookmarks WHERE title=$title',
+          {
+            $title: t
+          },
+          (err, rows) => {
+            if (rows.length > 0) {
+              console.log("exists");
+              icon.push("fas fa-star");
+            }
+            else {
+              console.log("nooo");
+              icon.push("far fa-star");
+            }
           }
-          else {
-            console.log("nooo");
-            icon.push("far fa-star");
-          }
-        }
-      );
+        );
+      });
     });
 
     setTimeout(function(){
@@ -300,7 +318,7 @@ app.post('/expand1',(req, res, next) =>{
         row: rows,
         star: icon
       });
-    },500);
+    },1500);
 
 
   });
@@ -316,21 +334,24 @@ app.post('/expand2',(req, res, next) =>{
     var unsaved = "far fa-star";
     rows.map(article => {
       var t = article.title;
-      db.all('SELECT title FROM bookmarks WHERE title=$title',
-        {
-          $title: t
-        },
-        (err, rows) => {
-          if (rows.length > 0) {
-            console.log("exists");
-            icon.push("fas fa-star");
+      t = t.replace(/&#39;/g, "'");
+      db.serialize(() => {
+        db.all('SELECT title FROM bookmarks WHERE title=$title',
+          {
+            $title: t
+          },
+          (err, rows) => {
+            if (rows.length > 0) {
+              console.log("exists");
+              icon.push("fas fa-star");
+            }
+            else {
+              console.log("nooo");
+              icon.push("far fa-star");
+            }
           }
-          else {
-            console.log("nooo");
-            icon.push("far fa-star");
-          }
-        }
-      );
+        );
+      });
     });
 
     setTimeout(function(){
@@ -496,21 +517,24 @@ app.post('/sort_by_title',(req, res, next) =>{
       var unsaved = "far fa-star";
       rows.map(article => {
         var t = article.title;
-        db.all('SELECT title FROM bookmarks WHERE title=$title',
-          {
-            $title: t
-          },
-          (err, rows) => {
-            if (rows.length > 0) {
-              console.log("exists");
-              icon.push("fas fa-star");
+        t = t.replace(/&#39;/g, "'");
+        db.serialize(() => {
+          db.all('SELECT title FROM bookmarks WHERE title=$title',
+            {
+              $title: t
+            },
+            (err, rows) => {
+              if (rows.length > 0) {
+                console.log("exists");
+                icon.push("fas fa-star");
+              }
+              else {
+                console.log("nooo");
+                icon.push("far fa-star");
+              }
             }
-            else {
-              console.log("nooo");
-              icon.push("far fa-star");
-            }
-          }
-        );
+          );
+        });
       });
 
       setTimeout(function(){
@@ -542,21 +566,24 @@ app.post('/expand1_sort_title',(req, res, next) =>{
       var unsaved = "far fa-star";
       rows.map(article => {
         var t = article.title;
-        db.all('SELECT title FROM bookmarks WHERE title=$title',
-          {
-            $title: t
-          },
-          (err, rows) => {
-            if (rows.length > 0) {
-              console.log("exists");
-              icon.push("fas fa-star");
+        t = t.replace(/&#39;/g, "'");
+        db.serialize(() => {
+          db.all('SELECT title FROM bookmarks WHERE title=$title',
+            {
+              $title: t
+            },
+            (err, rows) => {
+              if (rows.length > 0) {
+                console.log("exists");
+                icon.push("fas fa-star");
+              }
+              else {
+                console.log("nooo");
+                icon.push("far fa-star");
+              }
             }
-            else {
-              console.log("nooo");
-              icon.push("far fa-star");
-            }
-          }
-        );
+          );
+        });
       });
 
       setTimeout(function(){
@@ -588,21 +615,24 @@ app.post('/expand2_sort_title',(req, res, next) =>{
       var unsaved = "far fa-star";
       rows.map(article => {
         var t = article.title;
-        db.all('SELECT title FROM bookmarks WHERE title=$title',
-          {
-            $title: t
-          },
-          (err, rows) => {
-            if (rows.length > 0) {
-              console.log("exists");
-              icon.push("fas fa-star");
+        t = t.replace(/&#39;/g, "'");
+        db.serialize(() => {
+          db.all('SELECT title FROM bookmarks WHERE title=$title',
+            {
+              $title: t
+            },
+            (err, rows) => {
+              if (rows.length > 0) {
+                console.log("exists");
+                icon.push("fas fa-star");
+              }
+              else {
+                console.log("nooo");
+                icon.push("far fa-star");
+              }
             }
-            else {
-              console.log("nooo");
-              icon.push("far fa-star");
-            }
-          }
-        );
+          );
+        });
       });
 
       setTimeout(function(){
@@ -635,21 +665,24 @@ app.post('/sort_by_content',(req, res, next) =>{
       var unsaved = "far fa-star";
       rows.map(article => {
         var t = article.title;
-        db.all('SELECT title FROM bookmarks WHERE title=$title',
-          {
-            $title: t
-          },
-          (err, rows) => {
-            if (rows.length > 0) {
-              console.log("exists");
-              icon.push("fas fa-star");
+        t = t.replace(/&#39;/g, "'");
+        db.serialize(() => {
+          db.all('SELECT title FROM bookmarks WHERE title=$title',
+            {
+              $title: t
+            },
+            (err, rows) => {
+              if (rows.length > 0) {
+                console.log("exists");
+                icon.push("fas fa-star");
+              }
+              else {
+                console.log("nooo");
+                icon.push("far fa-star");
+              }
             }
-            else {
-              console.log("nooo");
-              icon.push("far fa-star");
-            }
-          }
-        );
+          );
+        });
       });
 
       setTimeout(function(){
@@ -681,21 +714,24 @@ app.post('/expand1_sort_content',(req, res, next) =>{
       var unsaved = "far fa-star";
       rows.map(article => {
         var t = article.title;
-        db.all('SELECT title FROM bookmarks WHERE title=$title',
-          {
-            $title: t
-          },
-          (err, rows) => {
-            if (rows.length > 0) {
-              console.log("exists");
-              icon.push("fas fa-star");
+        t = t.replace(/&#39;/g, "'");
+        db.serialize(() => {
+          db.all('SELECT title FROM bookmarks WHERE title=$title',
+            {
+              $title: t
+            },
+            (err, rows) => {
+              if (rows.length > 0) {
+                console.log("exists");
+                icon.push("fas fa-star");
+              }
+              else {
+                console.log("nooo");
+                icon.push("far fa-star");
+              }
             }
-            else {
-              console.log("nooo");
-              icon.push("far fa-star");
-            }
-          }
-        );
+          );
+        });
       });
 
       setTimeout(function(){
@@ -727,21 +763,24 @@ app.post('/expand2_sort_content',(req, res, next) =>{
       var unsaved = "far fa-star";
       rows.map(article => {
         var t = article.title;
-        db.all('SELECT title FROM bookmarks WHERE title=$title',
-          {
-            $title: t
-          },
-          (err, rows) => {
-            if (rows.length > 0) {
-              console.log("exists");
-              icon.push("fas fa-star");
+        t = t.replace(/&#39;/g, "'");
+        db.serialize(() => {
+          db.all('SELECT title FROM bookmarks WHERE title=$title',
+            {
+              $title: t
+            },
+            (err, rows) => {
+              if (rows.length > 0) {
+                console.log("exists");
+                icon.push("fas fa-star");
+              }
+              else {
+                console.log("nooo");
+                icon.push("far fa-star");
+              }
             }
-            else {
-              console.log("nooo");
-              icon.push("far fa-star");
-            }
-          }
-        );
+          );
+        });
       });
 
       setTimeout(function(){
@@ -774,21 +813,24 @@ app.post('/sort_by_layout',(req, res, next) =>{
       var unsaved = "far fa-star";
       rows.map(article => {
         var t = article.title;
-        db.all('SELECT title FROM bookmarks WHERE title=$title',
-          {
-            $title: t
-          },
-          (err, rows) => {
-            if (rows.length > 0) {
-              console.log("exists");
-              icon.push("fas fa-star");
+        t = t.replace(/&#39;/g, "'");
+        db.serialize(() => {
+          db.all('SELECT title FROM bookmarks WHERE title=$title',
+            {
+              $title: t
+            },
+            (err, rows) => {
+              if (rows.length > 0) {
+                console.log("exists");
+                icon.push("fas fa-star");
+              }
+              else {
+                console.log("nooo");
+                icon.push("far fa-star");
+              }
             }
-            else {
-              console.log("nooo");
-              icon.push("far fa-star");
-            }
-          }
-        );
+          );
+        });
       });
 
       setTimeout(function(){
@@ -820,21 +862,24 @@ app.post('/expand1_sort_layout',(req, res, next) =>{
       var unsaved = "far fa-star";
       rows.map(article => {
         var t = article.title;
-        db.all('SELECT title FROM bookmarks WHERE title=$title',
-          {
-            $title: t
-          },
-          (err, rows) => {
-            if (rows.length > 0) {
-              console.log("exists");
-              icon.push("fas fa-star");
+        t = t.replace(/&#39;/g, "'");
+        db.serialize(() => {
+          db.all('SELECT title FROM bookmarks WHERE title=$title',
+            {
+              $title: t
+            },
+            (err, rows) => {
+              if (rows.length > 0) {
+                console.log("exists");
+                icon.push("fas fa-star");
+              }
+              else {
+                console.log("nooo");
+                icon.push("far fa-star");
+              }
             }
-            else {
-              console.log("nooo");
-              icon.push("far fa-star");
-            }
-          }
-        );
+          );
+        });
       });
 
       setTimeout(function(){
@@ -866,21 +911,24 @@ app.post('/expand2_sort_layout',(req, res, next) =>{
       var unsaved = "far fa-star";
       rows.map(article => {
         var t = article.title;
-        db.all('SELECT title FROM bookmarks WHERE title=$title',
-          {
-            $title: t
-          },
-          (err, rows) => {
-            if (rows.length > 0) {
-              console.log("exists");
-              icon.push("fas fa-star");
+        t = t.replace(/&#39;/g, "'");
+        db.serialize(() => {
+          db.all('SELECT title FROM bookmarks WHERE title=$title',
+            {
+              $title: t
+            },
+            (err, rows) => {
+              if (rows.length > 0) {
+                console.log("exists");
+                icon.push("fas fa-star");
+              }
+              else {
+                console.log("nooo");
+                icon.push("far fa-star");
+              }
             }
-            else {
-              console.log("nooo");
-              icon.push("far fa-star");
-            }
-          }
-        );
+          );
+        });
       });
 
       setTimeout(function(){

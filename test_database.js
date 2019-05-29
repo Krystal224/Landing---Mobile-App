@@ -18,8 +18,8 @@ db.serialize(() => {
   // create a new database table:
    // DROP TABLE [IF EXISTS] [schema_name.]author_article;
    // db.run("DROP TABLE author_article");
-   db.run("CREATE TABLE IF NOT EXISTS bookmarks (title TEXT, link TEXT)");   
-
+   db.run("CREATE TABLE IF NOT EXISTS bookmarks (title TEXT, link TEXT)");
+   db.run("DELETE FROM bookmarks WHERE title=$title", {$title: "The Real Reason Why <b>Adam Levine</b> Is Leaving &#39;The Voice&#39; and Is Now Working on &#39;Songland&#39;"})
    // db.run("CREATE TABLE author_article (id NUM, author TEXT, title TEXT, claps TEXT, reading_time NUM, link TEXT, like NUM)");
    //db.run( "DROP TABLE [IF EXISTS] [schema_name.]author_article");
   // db.run("CREATE TABLE author_article (author TEXT, claps NUM, link TEXT)");
