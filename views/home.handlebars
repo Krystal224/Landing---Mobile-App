@@ -84,6 +84,37 @@
     );
 
 
+    $.ajax({
+    url: '/latest_reading',
+    method: 'get'
+    })
+
+    .then(
+      function success(json) {
+        console.log("requesting to latest!");
+        console.log(json);
+        let average = 0;
+        $.each(json, function(i, item) {
+
+          average = json[i].reading_time + average;
+
+
+        })
+
+        let final = average/40;
+        console.log(final);
+        $('#latest_reading').html(final);
+
+
+
+      },
+
+      function fail(data, status) {
+        console.log("fail");
+        console.log(data);
+        alert('Request failed.  Returned status of ' + status);
+      }
+    );
 
 
 
@@ -929,6 +960,17 @@ expand2 = () => {
     <img src="push1.jpg"   width="120" height="120">
 </div>
 </div>
+
+<div class="daily_hit_container">
+    <h1> Daily Hit </h1>
+    <h3> At current moment, among the top most popular 50 articles, <br> the average reading time is</h3>
+    <p style="font-weight:800;font-size:30px;color:#ffd000; text-align:right;padding-right:40%;margin-top:-43px;" id="latest_reading"> </p>
+
+
+
+
+</div>
+
 
 <div class="article_container">
   <h1>Articles Sources</h1>

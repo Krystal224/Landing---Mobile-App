@@ -255,6 +255,18 @@ app.get('/fetchArticle',(req, res, next) =>{
   });
 });
 
+app.get('/latest_reading',(req, res, next) =>{
+  console.log("requesting to fetch latest reading time");
+
+  db.all('SELECT reading_time FROM author_article WHERE id < 40 ', (err, result) =>{
+
+
+    res.send(result);
+
+  });
+
+});
+
 app.post('/expand1',(req, res, next) =>{
   console.log("requesting to fetch data expand1");
   db.all('SELECT * FROM author_article LIMIT 8', (err, rows) =>{

@@ -129,6 +129,23 @@ body {
   color:black;
 }
 
+.daily_hit_container{
+    padding-top: 56px;
+    background-color:#F64C5F;
+    padding-bottom: 30px;
+}
+
+.daily_hit_container h1{
+  text-align:center;
+
+}
+
+.daily_hit_container h3{
+  text-align:left;
+  color:white;
+  padding-left:25%;
+  font-size:25px;
+}
 
 .article_container{
   background-color: #F1CDD9;
