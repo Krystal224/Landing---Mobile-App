@@ -5,6 +5,7 @@ Improvement:
 2. We added a new section called "Daily skill push", which shows you the latest article post about "how to write a good article", this section will be updated once a day.
 3. We added a new section called "Daily hit", which uses the data from our database to do some calculation and show statistics about top
 popular articles. The statistics is derived from the database, thus once database is updated, the statistics will be updated.
+4. We also enable the bookmark button to update when the articles/news are bookmarked.
 
 Data visualization: We used Handlebars as our templating engine and Express as our backend. For the API we used, we call the API in backend and directly render template using res.render. For sqlite database, we call ajax call in the front-end and return generating HTML using string concat. when the ajax call completes successfully.
 

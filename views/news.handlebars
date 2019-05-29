@@ -6,6 +6,13 @@
 
 <script typt="text/javascript">
   $(document).ready(() => {
+
+    $(window).bind("pageshow", function(event) {
+      if (event.originalEvent.persisted) {
+          window.location.reload();
+      }
+    });
+    
     $('body').on('click', '.mark', function (e) {
       console.log("clickkkkkked");
       e.preventDefault();
