@@ -259,8 +259,37 @@ app.post('/expand1',(req, res, next) =>{
   console.log("requesting to fetch data expand1");
   db.all('SELECT * FROM author_article LIMIT 8', (err, rows) =>{
     console.log("find rows");
+    var icon = []
+    var saved = "fas fa-star";
+    var unsaved = "far fa-star";
+    rows.map(article => {
+      var t = article.title;
+      db.all('SELECT title FROM bookmarks WHERE title=$title',
+        {
+          $title: t
+        },
+        (err, rows) => {
+          if (rows.length > 0) {
+            console.log("exists");
+            icon.push("fas fa-star");
+          }
+          else {
+            console.log("nooo");
+            icon.push("far fa-star");
+          }
+        }
+      );
+    });
 
-    res.send(rows);
+    setTimeout(function(){
+      console.log("icon");
+      console.log(icon);
+      res.send({
+        row: rows,
+        star: icon
+      });
+    },500);
+
 
   });
 });
@@ -270,7 +299,36 @@ app.post('/expand2',(req, res, next) =>{
   db.all('SELECT * FROM author_article', (err, rows) =>{
     console.log("find rows");
 
-    res.send(rows);
+    var icon = []
+    var saved = "fas fa-star";
+    var unsaved = "far fa-star";
+    rows.map(article => {
+      var t = article.title;
+      db.all('SELECT title FROM bookmarks WHERE title=$title',
+        {
+          $title: t
+        },
+        (err, rows) => {
+          if (rows.length > 0) {
+            console.log("exists");
+            icon.push("fas fa-star");
+          }
+          else {
+            console.log("nooo");
+            icon.push("far fa-star");
+          }
+        }
+      );
+    });
+
+    setTimeout(function(){
+      console.log("icon");
+      console.log(icon);
+      res.send({
+        row: rows,
+        star: icon
+      });
+    },500);
 
   });
 });
@@ -421,8 +479,36 @@ app.post('/sort_by_title',(req, res, next) =>{
       })
     }
     else {
-      res.send(rows)
-      console.log(rows)
+      var icon = []
+      var saved = "fas fa-star";
+      var unsaved = "far fa-star";
+      rows.map(article => {
+        var t = article.title;
+        db.all('SELECT title FROM bookmarks WHERE title=$title',
+          {
+            $title: t
+          },
+          (err, rows) => {
+            if (rows.length > 0) {
+              console.log("exists");
+              icon.push("fas fa-star");
+            }
+            else {
+              console.log("nooo");
+              icon.push("far fa-star");
+            }
+          }
+        );
+      });
+
+      setTimeout(function(){
+        console.log("icon");
+        console.log(icon);
+        res.send({
+          row: rows,
+          star: icon
+        });
+      },500);
     }
 
   });
@@ -439,8 +525,36 @@ app.post('/expand1_sort_title',(req, res, next) =>{
       })
     }
     else {
-      res.send(rows)
-      console.log(rows)
+      var icon = []
+      var saved = "fas fa-star";
+      var unsaved = "far fa-star";
+      rows.map(article => {
+        var t = article.title;
+        db.all('SELECT title FROM bookmarks WHERE title=$title',
+          {
+            $title: t
+          },
+          (err, rows) => {
+            if (rows.length > 0) {
+              console.log("exists");
+              icon.push("fas fa-star");
+            }
+            else {
+              console.log("nooo");
+              icon.push("far fa-star");
+            }
+          }
+        );
+      });
+
+      setTimeout(function(){
+        console.log("icon");
+        console.log(icon);
+        res.send({
+          row: rows,
+          star: icon
+        });
+      },500);
     }
 
   });
@@ -457,8 +571,36 @@ app.post('/expand2_sort_title',(req, res, next) =>{
       })
     }
     else {
-      res.send(rows)
-      console.log(rows)
+      var icon = []
+      var saved = "fas fa-star";
+      var unsaved = "far fa-star";
+      rows.map(article => {
+        var t = article.title;
+        db.all('SELECT title FROM bookmarks WHERE title=$title',
+          {
+            $title: t
+          },
+          (err, rows) => {
+            if (rows.length > 0) {
+              console.log("exists");
+              icon.push("fas fa-star");
+            }
+            else {
+              console.log("nooo");
+              icon.push("far fa-star");
+            }
+          }
+        );
+      });
+
+      setTimeout(function(){
+        console.log("icon");
+        console.log(icon);
+        res.send({
+          row: rows,
+          star: icon
+        });
+      },500);
     }
 
   });
@@ -476,8 +618,36 @@ app.post('/sort_by_content',(req, res, next) =>{
       })
     }
     else {
-      res.send(rows)
-      console.log(rows)
+      var icon = []
+      var saved = "fas fa-star";
+      var unsaved = "far fa-star";
+      rows.map(article => {
+        var t = article.title;
+        db.all('SELECT title FROM bookmarks WHERE title=$title',
+          {
+            $title: t
+          },
+          (err, rows) => {
+            if (rows.length > 0) {
+              console.log("exists");
+              icon.push("fas fa-star");
+            }
+            else {
+              console.log("nooo");
+              icon.push("far fa-star");
+            }
+          }
+        );
+      });
+
+      setTimeout(function(){
+        console.log("icon");
+        console.log(icon);
+        res.send({
+          row: rows,
+          star: icon
+        });
+      },500);
     }
 
   });
@@ -494,8 +664,36 @@ app.post('/expand1_sort_content',(req, res, next) =>{
       })
     }
     else {
-      res.send(rows)
-      console.log(rows)
+      var icon = []
+      var saved = "fas fa-star";
+      var unsaved = "far fa-star";
+      rows.map(article => {
+        var t = article.title;
+        db.all('SELECT title FROM bookmarks WHERE title=$title',
+          {
+            $title: t
+          },
+          (err, rows) => {
+            if (rows.length > 0) {
+              console.log("exists");
+              icon.push("fas fa-star");
+            }
+            else {
+              console.log("nooo");
+              icon.push("far fa-star");
+            }
+          }
+        );
+      });
+
+      setTimeout(function(){
+        console.log("icon");
+        console.log(icon);
+        res.send({
+          row: rows,
+          star: icon
+        });
+      },500);
     }
 
   });
@@ -512,8 +710,36 @@ app.post('/expand2_sort_content',(req, res, next) =>{
       })
     }
     else {
-      res.send(rows)
-      console.log(rows)
+      var icon = []
+      var saved = "fas fa-star";
+      var unsaved = "far fa-star";
+      rows.map(article => {
+        var t = article.title;
+        db.all('SELECT title FROM bookmarks WHERE title=$title',
+          {
+            $title: t
+          },
+          (err, rows) => {
+            if (rows.length > 0) {
+              console.log("exists");
+              icon.push("fas fa-star");
+            }
+            else {
+              console.log("nooo");
+              icon.push("far fa-star");
+            }
+          }
+        );
+      });
+
+      setTimeout(function(){
+        console.log("icon");
+        console.log(icon);
+        res.send({
+          row: rows,
+          star: icon
+        });
+      },500);
     }
 
   });
@@ -531,8 +757,36 @@ app.post('/sort_by_layout',(req, res, next) =>{
       })
     }
     else {
-      res.send(rows)
-      console.log(rows)
+      var icon = []
+      var saved = "fas fa-star";
+      var unsaved = "far fa-star";
+      rows.map(article => {
+        var t = article.title;
+        db.all('SELECT title FROM bookmarks WHERE title=$title',
+          {
+            $title: t
+          },
+          (err, rows) => {
+            if (rows.length > 0) {
+              console.log("exists");
+              icon.push("fas fa-star");
+            }
+            else {
+              console.log("nooo");
+              icon.push("far fa-star");
+            }
+          }
+        );
+      });
+
+      setTimeout(function(){
+        console.log("icon");
+        console.log(icon);
+        res.send({
+          row: rows,
+          star: icon
+        });
+      },500);
     }
 
   });
@@ -549,8 +803,36 @@ app.post('/expand1_sort_layout',(req, res, next) =>{
       })
     }
     else {
-      res.send(rows)
-      console.log(rows)
+      var icon = []
+      var saved = "fas fa-star";
+      var unsaved = "far fa-star";
+      rows.map(article => {
+        var t = article.title;
+        db.all('SELECT title FROM bookmarks WHERE title=$title',
+          {
+            $title: t
+          },
+          (err, rows) => {
+            if (rows.length > 0) {
+              console.log("exists");
+              icon.push("fas fa-star");
+            }
+            else {
+              console.log("nooo");
+              icon.push("far fa-star");
+            }
+          }
+        );
+      });
+
+      setTimeout(function(){
+        console.log("icon");
+        console.log(icon);
+        res.send({
+          row: rows,
+          star: icon
+        });
+      },500);
     }
 
   });
@@ -567,8 +849,36 @@ app.post('/expand2_sort_layout',(req, res, next) =>{
       })
     }
     else {
-      res.send(rows)
-      console.log(rows)
+      var icon = []
+      var saved = "fas fa-star";
+      var unsaved = "far fa-star";
+      rows.map(article => {
+        var t = article.title;
+        db.all('SELECT title FROM bookmarks WHERE title=$title',
+          {
+            $title: t
+          },
+          (err, rows) => {
+            if (rows.length > 0) {
+              console.log("exists");
+              icon.push("fas fa-star");
+            }
+            else {
+              console.log("nooo");
+              icon.push("far fa-star");
+            }
+          }
+        );
+      });
+
+      setTimeout(function(){
+        console.log("icon");
+        console.log(icon);
+        res.send({
+          row: rows,
+          star: icon
+        });
+      },500);
     }
 
   });
