@@ -23,9 +23,18 @@
                 link: link,
               },
         success: (data) => {
-          console.log("id");
-          let added = '#mark' + id;
-          $(added).append("Added to <a href='/source'>Bookmark</a>");
+          console.log("children");
+          let modal = '#myModal' + id;
+          let icon = '#icon' + id;
+          $(icon).removeClass("far fa-star");
+          $(icon).addClass("fas fa-star");
+          console.log($('#myModal').attr("class"));
+          $(modal).removeClass("hidden");
+          $(modal).addClass("show");
+          setTimeout(function() {
+            $(modal).removeClass("show");
+            $(modal).addClass("hidden");
+          }, 2000);
           console.log("called");
         }
       });
@@ -43,8 +52,17 @@
       <span>{{{news.title}}}</span>
       </div>
       <div class="col-1">
-        <button class="mark" id="{{index}}" name="{{{news.title}}}" value="{{{news.url}}}"><i class="far fa-star"></i></button>
-        <p id="mark{{index}}"></p>
+        <button class="mark" id="{{index}}" name="{{{news.title}}}" value="{{{news.url}}}">
+          <i id="icon{{index}}" class="{{lookup ../star @index}}"></i>
+        </button>
+        <div id="myModal{{index}}" class="hidden">
+          <!-- Modal content -->
+          <a href="/source"><u id="mark{{index}}">Bookmarked!</u></a>
+        </div>
+
+        <div style="height: 20px">
+
+        </div>
       </div>
     </div>
       <i>
@@ -56,5 +74,9 @@
         <a href={{news.url}}>Read full article</a>
       </p>
   </div>
+  {{/each}}
+
+  {{#each star}}
+
   {{/each}}
 </div>

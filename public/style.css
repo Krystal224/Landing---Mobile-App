@@ -2,6 +2,10 @@ button, a {
   cursor: pointer;
 }
 
+button:focus {
+  outline: none;
+}
+
 body {
   margin: 0;
 }
@@ -23,7 +27,7 @@ body {
 
 .banner {
   width: 100%;
-  background-image: url("background_1.jpg");
+  background-image: url("background_2.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -34,10 +38,12 @@ body {
   text-align: center;
   text-shadow: 2px 2px 8px #4A4848;
   font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
-  font-size: 80px;
-  font-weight:700;
-  color: white;
-  padding-top: 1em;
+  /* font-family: Copperplate, "Copperplate Gothic Light", fantasy; */
+  font-size: 120px;
+  font-weight: bolder;
+  letter-spacing: 8px;
+  color: #F1ECF9;
+  padding-top: 2.25em;
 
 }
 
@@ -45,9 +51,8 @@ body {
   text-align: center;
   text-shadow: 2px 2px 8px #4A4848;
   color: white;
-  padding-top: 1em;
   font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
-  font-weight: 700;
+  /* font-weight: 700; */
 }
 .article_container{
   background-color: #F1CDD9;
@@ -135,7 +140,6 @@ body {
   padding-bottom: 3em;
   width: 100%;
   background-color: #2F4858;
-  height: 300px;
 }
 
 .trend h1 {
@@ -155,7 +159,7 @@ body {
   font-family: "Arial Narrow", Arial, sans-serif;
   font-size: 24px;
   font-weight: 700;
-  padding: 0.35em 1em ;
+  padding: 0.35em 1em;
 
   /* background: linear-gradient(rgba(255, 255, 255, 1),rgba(254, 218, 70, 0.9)); */
 
@@ -167,10 +171,13 @@ body {
   border: 2px solid #feda46;
 }
 
-.trend button:hover {
-  /* font-size: 28px; */
-  padding: 0.5em 1.25em ;
+.trend_animation {
+  background: linear-gradient(rgba(255, 255, 255, 1),rgba(254, 218, 70, 0.9));
 }
+
+/* .trend button:hover {
+  padding: 0.5em 1.25em ;
+} */
 
 .news {
   border: 1px solid #DBDBDB;
@@ -223,6 +230,36 @@ body {
   margin-bottom: 1em;
 }
 
+.hidden {
+  display: none; /* Hidden by default */
+}
+
+.show {
+  display: block;
+  position: absolute;
+}
+
+.show u {
+  font-size: 14px;
+  padding: 0.75em;
+  border: 1px solid #DBDBDB;
+  box-shadow: 5px 5px 3px #dcbdc7;
+  background-color: white;
+}
+
+.show_home {
+  display: block;
+  float: right;
+}
+
+.show_home u {
+  font-size: 14px;
+  padding: 0.75em;
+  border: 1px solid #DBDBDB;
+  box-shadow: 5px 5px 3px #dcbdc7;
+  background-color: white;
+}
+
 .writing-data {
   text-decoration: underline;
   font-size: 24px;
@@ -237,6 +274,7 @@ ul {
   padding-left: 0;
   top: 0;
   margin: 0;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 li {
@@ -249,6 +287,12 @@ li {
   margin-left: 1em;
 }
 
+.nav-home i {
+  font-size: 64px;
+  color: black;
+  filter: drop-shadow(2px 2px 5px #4A4848);
+}
+
 .nav-bookmark {
   float: right;
   margin-right: 1em;
@@ -256,6 +300,7 @@ li {
 
 .nav-bookmark i {
   color: yellow;
+  font-size: 48px;
 }
 
 .my-source {

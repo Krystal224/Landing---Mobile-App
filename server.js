@@ -79,10 +79,36 @@ app.get('/trends/:trendid', (req, res) => {
         return -1;
       });
       console.log("rendering trend news page");
-      res.render('news', {
-        tag: titles[index].query,
-        news: results[index].articles,
+      var icon = []
+      var saved = "fas fa-star";
+      var unsaved = "far fa-star";
+      results[index].articles.map(article => {
+        var t = article.title;
+        db.all('SELECT title FROM bookmarks WHERE title=$title',
+          {
+            $title: t
+          },
+          (err, rows) => {
+            if (rows.length > 0) {
+              console.log("exists");
+              icon.push("fas fa-star");
+            }
+            else {
+              console.log("nooo");
+              icon.push("far fa-star");
+            }
+          }
+        );
       });
+
+      setTimeout(function(){
+        res.render('news', {
+          tag: titles[index].query,
+          news: results[index].articles,
+          star: icon
+        });
+      },500);
+
     }
   });
 })
@@ -97,7 +123,7 @@ app.post('/bookmarks', (req, res) => {
     },
     (err, rows) => {
       if (rows.length > 0) {
-        console.log("existss");
+        console.log("exists");
       }
       else {
         db.run(
@@ -114,7 +140,6 @@ app.post('/bookmarks', (req, res) => {
             } else {
               console.log("sucesss");
               res.send("success");
-              
             }
           }
         );
@@ -182,7 +207,37 @@ app.get('/fetchData',(req, res, next) =>{
     // res.render('home',{
     //     send_data:rows
     // });
-    res.send(rows);
+
+    var icon = []
+    var saved = "fas fa-star";
+    var unsaved = "far fa-star";
+    rows.map(article => {
+      var t = article.title;
+      db.all('SELECT title FROM bookmarks WHERE title=$title',
+        {
+          $title: t
+        },
+        (err, rows) => {
+          if (rows.length > 0) {
+            console.log("exists");
+            icon.push("fas fa-star");
+          }
+          else {
+            console.log("nooo");
+            icon.push("far fa-star");
+          }
+        }
+      );
+    });
+
+    setTimeout(function(){
+      console.log("icon");
+      console.log(icon);
+      res.send({
+        row: rows,
+        star: icon
+      });
+    },500);
     // res.sendFile(path.join(__dirname, 'index.html'))
   });
 });
