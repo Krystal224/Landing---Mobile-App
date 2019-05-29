@@ -20,17 +20,17 @@ and representative.
 2. We hope our dataset contains not only the columns we have now, but also have other columns like "article_category","article_trend","share_number","article_layout","title_structure". Then, we could make use those columns to get more statistics for "Daily hit" section, to make it more powerful and inclusive, and informative. And give user a better feeling of "catching up
 with the latest information".
 
-User Action1: Bookmark article/news that you like; Delete bookmarked article.
-User Action2: Sort articles on home page based on different criteria.
-User Action3: Expand to see more articles.
-
 General UI screenshots:
 ![homepage](https://github.com/Hannahh1425/cogs121/blob/master/M5/home1.jpg)
 ![homepage](https://github.com/Hannahh1425/cogs121/blob/master/M5/home2.jpg)
-![news page](https://github.com/Hannahh1425/cogs121/blob/master/M5/news.jpg)
+![news page](https://github.com/Hannahh1425/cogs121/blob/master/M5/home3.jpg)
+![news page](https://github.com/Hannahh1425/cogs121/blob/master/M5/home4.jpg)
+![news page](https://github.com/Hannahh1425/cogs121/blob/master/M5/home5.jpg)
+![news page](https://github.com/Hannahh1425/cogs121/blob/master/M5/trend.jpg)
 ![bookmark page](https://github.com/Hannahh1425/cogs121/blob/master/M5/bookmark.jpg)
 
-Visualizatino of data:
-![homepage](https://github.com/Hannahh1425/cogs121/blob/master/M5/home1.jpg)
-![homepage](https://github.com/Hannahh1425/cogs121/blob/master/M5/home1.jpg)
-![homepage](https://github.com/Hannahh1425/cogs121/blob/master/M5/home1.jpg)
+Visualization of data:
+![bookmark page](https://github.com/Hannahh1425/cogs121/blob/master/M5/home2.jpg)
+![bookmark page](https://github.com/Hannahh1425/cogs121/blob/master/M5/bookmark.jpg)
+![homepage](https://github.com/Hannahh1425/cogs121/blob/master/M5/home4.jpg)
+![homepage](https://github.com/Hannahh1425/cogs121/blob/master/M5/trend.jpg)
