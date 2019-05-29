@@ -18,7 +18,7 @@ const path = require('path');
 //CHANGE HERE
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('test.db');
-
+const db2 = new sqlite3.Database('writing_article.db');
 
 var hbs = exphbs.create({
   defaultLayout: 'main',
@@ -201,7 +201,7 @@ app.post('/sourcedata', (req, res) => {
 
 app.get('/fetchData',(req, res, next) =>{
   console.log("requesting to fetch data");
-  db.all('SELECT * FROM author_article LIMIT 3', (err, rows) =>{
+  db.all('SELECT * FROM author_article LIMIT 4', (err, rows) =>{
     // console.log(rows);
     // const articles = rows.map(e => e.title);
     // res.render('home',{
@@ -242,6 +242,39 @@ app.get('/fetchData',(req, res, next) =>{
   });
 });
 
+app.get('/fetchArticle',(req, res, next) =>{
+  console.log("requesting to fetch article");
+  db2.all('SELECT * FROM new_article ', (err, rows) =>{
+    // console.log(rows);
+    // const articles = rows.map(e => e.title);
+    // res.render('home',{
+    //     send_data:rows
+    // });
+    res.send(rows);
+    // res.sendFile(path.join(__dirname, 'index.html'))
+  });
+});
+
+app.post('/expand1',(req, res, next) =>{
+  console.log("requesting to fetch data expand1");
+  db.all('SELECT * FROM author_article LIMIT 8', (err, rows) =>{
+    console.log("find rows");
+
+    res.send(rows);
+
+  });
+});
+
+app.post('/expand2',(req, res, next) =>{
+  console.log("requesting to fetch data expand1");
+  db.all('SELECT * FROM author_article', (err, rows) =>{
+    console.log("find rows");
+
+    res.send(rows);
+
+  });
+});
+
 // app.post('/updateLike', (req, res, next) => {
 //
 //   const { body } = req;
@@ -266,24 +299,67 @@ app.post('/updateLikeTitle', (req, res, next) => {
   const { body } = req;
   const { article_id } = body;
   console.log(article_id);
-  db.get('SELECT like_title FROM author_article WHERE id = ' + article_id, (err, result) => {
+  db.get('SELECT like_title, actionT FROM author_article WHERE id = ' + article_id, (err, result) => {
     console.log(result);
     let newLikes = result.like_title + 1;
-    db.get('UPDATE author_article SET like_title = ' + (result.like_title + 1) + ' WHERE id = ' + article_id, (err,) => {
+    let newAction = result.actionT + 1;
+
+    // db.get('UPDATE author_article SET actionT = '+ (result.actionT + 1)+'WHERE id = ' + article_id);
+    db.get('UPDATE author_article SET ' + 'like_title = ' + (result.like_title + 1) +','+ 'actionT = ' + (result.actionT + 1)+' WHERE id = ' + article_id, (err,) => {
       if (err) {
         res.send({
           succees: false,
           message: "Internal error"
         })
+
       }
       else {
         res.send({
-          newLikes: newLikes
+          newLikes: newLikes,
+          newAction: newAction
+
+
         });
+
+
+
       }
     });
+
+
   });
+
+
 })
+
+// app.post('/updateUnLikeTitle', (req, res, next) => {
+//
+//   const { body } = req;
+//   const { article_id } = body;
+//   console.log(article_id);
+//   db.get('SELECT like_title actionT ROM author_article WHERE id = ' + article_id, (err, result) => {
+//     console.log(result);
+//     let newLikes = result.like_title - 1;
+//
+//     db.get('UPDATE author_article SET ' + 'like_title = ' + (result.like_title - 1) +','+ 'actionT = ' + (result.actionT - 1)+' WHERE id = ' + article_id, (err,) => {
+//       if (err) {
+//         res.send({
+//           succees: false,
+//           message: "Internal error"
+//         })
+//       }
+//       else {
+//         res.send({
+//           newLikes: newLikes
+//         });
+//       }
+//     });
+//
+//
+//   });
+// })
+
+
 
 app.post('/updateLikeContent', (req, res, next) => {
 
@@ -293,7 +369,7 @@ app.post('/updateLikeContent', (req, res, next) => {
   db.get('SELECT like_content FROM author_article WHERE id = ' + article_id, (err, result) => {
     console.log(result);
     let newLikes = result.like_content + 1;
-    db.get('UPDATE author_article SET like_content = ' + (result.like_content + 1) + ' WHERE id = ' + article_id, (err,) => {
+    db.get('UPDATE author_article SET like_content = ' + (result.like_content + 1) + ' WHERE id = ' + article_id, (err,result) => {
       if (err) {
         res.send({
           succees: false,
@@ -336,6 +412,42 @@ app.post('/updateLikeLayout', (req, res, next) => {
 
 app.post('/sort_by_title',(req, res, next) =>{
   console.log("server sort by title")
+  db.all('SELECT * FROM author_article ORDER BY like_title DESC LIMIT 4;', (err, rows) =>{
+
+    if (err) {
+      res.send({
+        succees: false,
+        message: "Internal error"
+      })
+    }
+    else {
+      res.send(rows)
+      console.log(rows)
+    }
+
+  });
+});
+
+app.post('/expand1_sort_title',(req, res, next) =>{
+  console.log("server sort by title expand1")
+  db.all('SELECT * FROM author_article ORDER BY like_title DESC LIMIT 8;', (err, rows) =>{
+
+    if (err) {
+      res.send({
+        succees: false,
+        message: "Internal error"
+      })
+    }
+    else {
+      res.send(rows)
+      console.log(rows)
+    }
+
+  });
+});
+
+app.post('/expand2_sort_title',(req, res, next) =>{
+  console.log("server sort by title expand1")
   db.all('SELECT * FROM author_article ORDER BY like_title DESC;', (err, rows) =>{
 
     if (err) {
@@ -355,6 +467,42 @@ app.post('/sort_by_title',(req, res, next) =>{
 
 app.post('/sort_by_content',(req, res, next) =>{
   console.log("server sort by content")
+  db.all('SELECT * FROM author_article ORDER BY like_content DESC LIMIT 4;', (err, rows) =>{
+
+    if (err) {
+      res.send({
+        succees: false,
+        message: "Internal error"
+      })
+    }
+    else {
+      res.send(rows)
+      console.log(rows)
+    }
+
+  });
+});
+
+app.post('/expand1_sort_content',(req, res, next) =>{
+  console.log("server sort by content expand1")
+  db.all('SELECT * FROM author_article ORDER BY like_content DESC LIMIT 8;', (err, rows) =>{
+
+    if (err) {
+      res.send({
+        succees: false,
+        message: "Internal error"
+      })
+    }
+    else {
+      res.send(rows)
+      console.log(rows)
+    }
+
+  });
+});
+
+app.post('/expand2_sort_content',(req, res, next) =>{
+  console.log("server sort by content expand1")
   db.all('SELECT * FROM author_article ORDER BY like_content DESC;', (err, rows) =>{
 
     if (err) {
@@ -371,8 +519,45 @@ app.post('/sort_by_content',(req, res, next) =>{
   });
 });
 
+
 app.post('/sort_by_layout',(req, res, next) =>{
   console.log("server sort by layout")
+  db.all('SELECT * FROM author_article ORDER BY like_layout DESC LIMIT 4;', (err, rows) =>{
+
+    if (err) {
+      res.send({
+        succees: false,
+        message: "Internal error"
+      })
+    }
+    else {
+      res.send(rows)
+      console.log(rows)
+    }
+
+  });
+});
+
+app.post('/expand1_sort_layout',(req, res, next) =>{
+  console.log("server sort by layout expand1")
+  db.all('SELECT * FROM author_article ORDER BY like_layout DESC LIMIT 8;', (err, rows) =>{
+
+    if (err) {
+      res.send({
+        succees: false,
+        message: "Internal error"
+      })
+    }
+    else {
+      res.send(rows)
+      console.log(rows)
+    }
+
+  });
+});
+
+app.post('/expand2_sort_layout',(req, res, next) =>{
+  console.log("server sort by layout expand1")
   db.all('SELECT * FROM author_article ORDER BY like_layout DESC;', (err, rows) =>{
 
     if (err) {
