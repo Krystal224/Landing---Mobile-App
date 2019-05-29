@@ -25,10 +25,15 @@
         console.log("success");
         console.log(json);
         $.each(json, function(i, item) {
-          let titleLike = 'title' + i;
-          let contentLike = 'content' + i;
-          let layoutLike = 'layout' + i;
+
+          let titleLike = 'title' + json[i].id;
+          let contentLike = 'content' + json[i].id;
+          let layoutLike = 'layout' + json[i].id;
           let hidetitle = json[i].title;
+          // let bodyT = json[i].actionT;
+
+          // $("body").data(actionT,json[i]);
+
 
           $(".all_articles").append('<div id="' + json[i].id + '" class="article'+ i +' art"></div>');
           $("<button class=add_article id=" + i + " name=\"" + json[i].title + "\" value=\"" + json[i].link + "\"><i class='far fa-star'></i></button>" ).appendTo( '.article' + i);
@@ -36,13 +41,17 @@
           $('<a href="' + json[i].link + '">'+json[i].title+'</a>').appendTo( '.article' + i);
           // $('<h3 href="' + json[i].link + '">' + json[i].title + '</h3>').appendTo( '.article' + i);
           $("<p>" + json[i].author + '&nbsp&nbsp&nbsp&nbsp&nbsp' + json[i].reading_time +' min read '+'&nbsp&nbsp&nbsp&nbsp&nbsp'+json[i].claps+ '&nbsp'+ 'claps'+ "</p>").appendTo( '.article' + i);
-          // $("<button class=btnleft add_article name=\"" + json[i].title + "\" value=\"" + json[i].link + "\">Collect board</button>" ).appendTo( '.article' + i);
-          $('<button class = "btneach btntitle" id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
+          // $('<button class = "btneach btntitle" id = ' + titleLike + ' onclick="updateLikeTitle( '+ json[i].actionT + ','+ json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
+
+          $('<button class = "btneach btntitle" id = ' + titleLike + ' onclick="updateLikeTitle( '+ json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
           $('<button class = "btneach btncontent" id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Content  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
           $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
           // $("<button class=add_article name=\"" + json[i].title + "\" value=\"" + json[i].link + "\">Add to mySource</button>" ).appendTo( '.article' + i);
 
         })
+
+        $('<button class = "expandbtn" onclick="expand1()">expand</button>').appendTo('.all_articles');
+
       },
       function fail(data, status) {
         console.log("fail");
@@ -50,6 +59,37 @@
         alert('Request failed.  Returned status of ' + status);
       }
     );
+
+    $.ajax('/fetchArticle', {
+      method: 'get'
+    })
+    .then(
+      function success(json) {
+        console.log("requesting to fetch Article starts!");
+        console.log(json);
+
+          $('<a href="' + json[0].link + '">'+json[0].title+'</a>'+'<br>').appendTo('.daily_push');
+          // $("<p>" + json[0].author + "</p>").appendTo('.daily_push');//append author and reading time
+          $('<a style="font-size:15px;color:grey">' + json[0].author + "</a>").appendTo('.daily_push');//append author and reading time
+
+          $('<a href="' + json[2].link + '">'+json[2].title+'</a>'+'<br>').appendTo('.daily_push1');
+          $('<a style="font-size:15px;color:grey">' + json[2].author + "</a>").appendTo('.daily_push1');//append author and reading time
+
+
+
+      },
+      function fail(data, status) {
+        console.log("fail");
+        console.log(data);
+        alert('Request failed.  Returned status of ' + status);
+      }
+    );
+
+
+
+
+
+
   });
 
   // updateLike = (id) => {
@@ -91,7 +131,69 @@
   });
 
 
-  updateLikeTitle = (id) => {
+
+// Try out like + unlike here: DON't DELETE
+
+//   updateLikeTitle = (action,id) => {
+//
+//     if (action == 0){
+//
+//       console.log("like clicked" + action);
+//       console.log("id is:" + id);
+//
+//       $.ajax({
+//         url: '/updateLikeTitle',
+//         type: 'POST',
+//         dataType : 'json',
+//
+//         data: {
+//           article_id: id
+//         },
+//         success: (data) => {
+//
+//           let pass = '#title' + id;
+//           let action = data.newAction;
+//           // $(body).data(action);
+//
+//           $(pass).html('Title  ' +data.newLikes);
+//
+//           console.log("successfully reload idex.html")
+//
+//         }
+//
+//       });
+//
+//     }
+//     else{
+//       console.log("unlike clicked" + action);
+//
+//       $.ajax({
+//         url: '/updateUnLikeTitle',
+//         type: 'POST',
+//         dataType : 'json',
+//
+//         data: {
+//           article_id: id
+//         },
+//         success: (data) => {
+//
+//           let pass = '#title' + id;
+//
+//           $(pass).html('Title  ' + '<i class="far fa-thumbs-up"></i>'+'&nbsp'+data.newLikes);
+//
+//           console.log("successfully reload idex.html")
+//
+//         }
+//
+//       });
+//
+//
+//
+//     }
+// }
+
+updateLikeTitle = (id) => {
+  console.log("function called")
   $.ajax({
     url: '/updateLikeTitle',
     type: 'POST',
@@ -103,14 +205,48 @@
     success: (data) => {
 
       let pass = '#title' + id;
-      $(pass).html('Title  ' + '<i class="fas fa-thumbs-up"></i>'+'&nbsp'+data.newLikes);
+      $(pass).html('Title  ' +'<i class="fas fa-thumbs-up"></i>'+'&nbsp'+ data.newLikes);
 
       console.log("successfully reload idex.html")
 
     }
-
   });
 }
+
+// updateUnLikeTitle = (id) => {
+//     console.log("function unlike called")
+//   $.ajax({
+//     url: '/updateUnLikeTitle',
+//     type: 'POST',
+//     dataType : 'json',
+//
+//     data: {
+//       article_id: id
+//     },
+//     success: (data) => {
+//
+//       let pass = '#title' + id;
+//       $(pass).html('Title  ' +'<i class="far fa-thumbs-up"></i>'+'&nbsp'+ data.newLikes);
+//
+//       console.log("successfully reload idex.html")
+//
+//     }
+//   });
+// }
+
+// actionCount = (count,id) =>{
+//   console.log("count:"+count);
+//   console.log("id:"+id);
+//   if(count == 0){
+//     updateLikeTitle(id)
+//   }
+//
+//   else{
+//     updateUnLikeTitle(id)
+//   }
+//
+// }
+
 
 updateLikeContent = (id) => {
   $.ajax({
@@ -143,6 +279,7 @@ updateLikeLayout = (id) => {
     },
     success: (data) => {
 
+
       let pass = '#layout' + id;
       $(pass).html('Layout  ' + '<i class="fas fa-thumbs-up"></i>'+'&nbsp'+data.newLikes);
 
@@ -168,9 +305,9 @@ sort_title = () => {
       $('.all_articles').empty();
       $.each(json, function(i, item) {
 
-        let titleLike = 'title' + i;
-        let contentLike = 'content' + i;
-        let layoutLike = 'layout' + i;
+        let titleLike = 'title' + json[i].id;
+        let contentLike = 'content' + json[i].id;
+        let layoutLike = 'layout' + json[i].id;
         let hidetitle = json[i].title;
 
         $(".all_articles").append('<div id="' + json[i].id + '" class="article'+ i +' art"></div>');
@@ -180,9 +317,11 @@ sort_title = () => {
         $('<span id=added' + i + '></span>').appendTo('.article' + i);
         $('<button class = "btneach btntitle" id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
         $('<button class = "btneach btncontent" id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Content  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
-        $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout   '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
 
       })
+      $('<button class = "expandbtn" onclick="expand1_sort_title()">Expand</button>').appendTo('.all_articles');
+
     },
 
 
@@ -209,9 +348,9 @@ sort_content = () => {
       $('.all_articles').empty();
       $.each(json, function(i, item) {
 
-        let titleLike = 'title' + i;
-        let contentLike = 'content' + i;
-        let layoutLike = 'layout' + i;
+        let titleLike = 'title' + json[i].id;
+        let contentLike = 'content' + json[i].id;
+        let layoutLike = 'layout' + json[i].id;
         let hidetitle = json[i].title;
 
         $(".all_articles").append('<div id="' + json[i].id + '" class="article'+ i +' art"></div>');
@@ -225,6 +364,8 @@ sort_content = () => {
         $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
 
       })
+      $('<button class = "expandbtn" onclick="expand1_sort_content()">Expand</button>').appendTo('.all_articles');
+
     },
 
 
@@ -253,9 +394,9 @@ sort_layout = () => {
       $('.all_articles').empty();
       $.each(json, function(i, item) {
 
-        let titleLike = 'title' + i;
-        let contentLike = 'content' + i;
-        let layoutLike = 'layout' + i;
+        let titleLike = 'title' + json[i].id;
+        let contentLike = 'content' + json[i].id;
+        let layoutLike = 'layout' + json[i].id;
         let hidetitle = json[i].title;
 
         $(".all_articles").append('<div id="' + json[i].id + '" class="article'+ i +' art"></div>');
@@ -269,6 +410,9 @@ sort_layout = () => {
         $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
 
       })
+
+      $('<button class = "expandbtn" onclick="expand1_sort_layout()">Expand</button>').appendTo('.all_articles');
+
     },
 
 
@@ -282,6 +426,374 @@ sort_layout = () => {
 
 }
 
+expand1 = () => {
+
+  $.ajax({
+    url: '/expand1',
+    type: 'POST',
+
+  })
+  .then(
+    function success(json) {
+      console.log("expand1 starts");
+      console.log(json);
+      $('.all_articles').empty();
+      $.each(json, function(i, item) {
+
+        let titleLike = 'title' + json[i].id;
+        let contentLike = 'content' + json[i].id;
+        let layoutLike = 'layout' + json[i].id;
+        let hidetitle = json[i].title;
+
+        $(".all_articles").append('<div id="' + json[i].id + '" class="article'+ i +' art"></div>');
+        $('<a href="' + json[i].link + '">'+json[i].title+'</a>').appendTo( '.article' + i);
+        $("<p>" + json[i].author + '&nbsp&nbsp&nbsp&nbsp&nbsp' + json[i].reading_time +' min read '+'&nbsp&nbsp&nbsp&nbsp&nbsp'+json[i].claps+ '&nbsp'+ 'claps'+ "</p>").appendTo( '.article' + i);
+        $("<button class=add_article id=" + i + " name=\"" + json[i].title + "\" value=\"" + json[i].link + "\"><i class='far fa-star'></i></button>" ).appendTo( '.article' + i);
+        $('<span id=added' + i + '></span>').appendTo('.article' + i);
+
+        $('<button class = "btneach btntitle" id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btncontent" id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Content  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
+
+      })
+
+      $('<button class = "expandbtn" onclick="expand2()">See all</button>').appendTo('.all_articles');
+
+    },
+
+
+    function fail(data, status) {
+      console.log("fail");
+      console.log(data);
+      alert('Expand Request failed.  Returned status of ' + status);
+    }
+  );
+
+
+}
+
+expand1_sort_title = () => {
+
+  $.ajax({
+    url: '/expand1_sort_title',
+    type: 'POST',
+
+  })
+  .then(
+    function success(json) {
+      console.log("expand1 title starts");
+      console.log(json);
+      $('.all_articles').empty();
+      $.each(json, function(i, item) {
+
+        let titleLike = 'title' + json[i].id;
+        let contentLike = 'content' + json[i].id;
+        let layoutLike = 'layout' + json[i].id;
+        let hidetitle = json[i].title;
+
+        $(".all_articles").append('<div id="' + json[i].id + '" class="article'+ i +' art"></div>');
+        $('<a href="' + json[i].link + '">'+json[i].title+'</a>').appendTo( '.article' + i);
+        $("<p>" + json[i].author + '&nbsp&nbsp&nbsp&nbsp&nbsp' + json[i].reading_time +' min read '+'&nbsp&nbsp&nbsp&nbsp&nbsp'+json[i].claps+ '&nbsp'+ 'claps'+ "</p>").appendTo( '.article' + i);
+        $("<button class=add_article id=" + i + " name=\"" + json[i].title + "\" value=\"" + json[i].link + "\"><i class='far fa-star'></i></button>" ).appendTo( '.article' + i);
+        $('<span id=added' + i + '></span>').appendTo('.article' + i);
+
+        $('<button class = "btneach btntitle" id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btncontent" id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Content  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
+
+      })
+
+      $('<button class = "expandbtn" onclick="expand2_sort_title()">See all</button>').appendTo('.all_articles');
+
+    },
+
+
+    function fail(data, status) {
+      console.log("fail");
+      console.log(data);
+      alert('Expand Request failed.  Returned status of ' + status);
+    }
+  );
+
+
+}
+
+expand2_sort_title = () => {
+
+  $.ajax({
+    url: '/expand2_sort_title',
+    type: 'POST',
+
+  })
+  .then(
+    function success(json) {
+      console.log("expand2 title starts");
+      console.log(json);
+      $('.all_articles').empty();
+      $.each(json, function(i, item) {
+
+        let titleLike = 'title' + json[i].id;
+        let contentLike = 'content' + json[i].id;
+        let layoutLike = 'layout' + json[i].id;
+        let hidetitle = json[i].title;
+
+        $(".all_articles").append('<div id="' + json[i].id + '" class="article'+ i +' art"></div>');
+        $('<a href="' + json[i].link + '">'+json[i].title+'</a>').appendTo( '.article' + i);
+        $("<p>" + json[i].author + '&nbsp&nbsp&nbsp&nbsp&nbsp' + json[i].reading_time +' min read '+'&nbsp&nbsp&nbsp&nbsp&nbsp'+json[i].claps+ '&nbsp'+ 'claps'+ "</p>").appendTo( '.article' + i);
+        $("<button class=add_article id=" + i + " name=\"" + json[i].title + "\" value=\"" + json[i].link + "\"><i class='far fa-star'></i></button>" ).appendTo( '.article' + i);
+        $('<span id=added' + i + '></span>').appendTo('.article' + i);
+
+        $('<button class = "btneach btntitle" id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btncontent" id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Content  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
+
+      })
+
+
+
+    },
+
+
+    function fail(data, status) {
+      console.log("fail");
+      console.log(data);
+      alert('Expand Request failed.  Returned status of ' + status);
+    }
+  );
+
+
+}
+
+
+expand1_sort_content = () => {
+
+  $.ajax({
+    url: '/expand1_sort_content',
+    type: 'POST',
+
+  })
+  .then(
+    function success(json) {
+      console.log("expand1 content starts");
+      console.log(json);
+      $('.all_articles').empty();
+      $.each(json, function(i, item) {
+
+        let titleLike = 'title' + json[i].id;
+        let contentLike = 'content' + json[i].id;
+        let layoutLike = 'layout' + json[i].id;
+        let hidetitle = json[i].title;
+
+        $(".all_articles").append('<div id="' + json[i].id + '" class="article'+ i +' art"></div>');
+        $('<a href="' + json[i].link + '">'+json[i].title+'</a>').appendTo( '.article' + i);
+        $("<p>" + json[i].author + '&nbsp&nbsp&nbsp&nbsp&nbsp' + json[i].reading_time +' min read '+'&nbsp&nbsp&nbsp&nbsp&nbsp'+json[i].claps+ '&nbsp'+ 'claps'+ "</p>").appendTo( '.article' + i);
+        $("<button class=add_article id=" + i + " name=\"" + json[i].title + "\" value=\"" + json[i].link + "\"><i class='far fa-star'></i></button>" ).appendTo( '.article' + i);
+        $('<span id=added' + i + '></span>').appendTo('.article' + i);
+
+        $('<button class = "btneach btntitle" id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btncontent" id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Content  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
+
+      })
+
+      $('<button class = "expandbtn" onclick="expand2_sort_content()">See all</button>').appendTo('.all_articles');
+
+    },
+
+
+    function fail(data, status) {
+      console.log("fail");
+      console.log(data);
+      alert('Expand Request failed.  Returned status of ' + status);
+    }
+  );
+
+
+}
+
+expand2_sort_content = () => {
+
+  $.ajax({
+    url: '/expand2_sort_content',
+    type: 'POST',
+
+  })
+  .then(
+    function success(json) {
+      console.log("expand1 content starts");
+      console.log(json);
+      $('.all_articles').empty();
+      $.each(json, function(i, item) {
+
+        let titleLike = 'title' + json[i].id;
+        let contentLike = 'content' + json[i].id;
+        let layoutLike = 'layout' + json[i].id;
+        let hidetitle = json[i].title;
+
+        $(".all_articles").append('<div id="' + json[i].id + '" class="article'+ i +' art"></div>');
+        $('<a href="' + json[i].link + '">'+json[i].title+'</a>').appendTo( '.article' + i);
+        $("<p>" + json[i].author + '&nbsp&nbsp&nbsp&nbsp&nbsp' + json[i].reading_time +' min read '+'&nbsp&nbsp&nbsp&nbsp&nbsp'+json[i].claps+ '&nbsp'+ 'claps'+ "</p>").appendTo( '.article' + i);
+        $("<button class=add_article id=" + i + " name=\"" + json[i].title + "\" value=\"" + json[i].link + "\"><i class='far fa-star'></i></button>" ).appendTo( '.article' + i);
+        $('<span id=added' + i + '></span>').appendTo('.article' + i);
+
+        $('<button class = "btneach btntitle" id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btncontent" id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Content  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
+
+      })
+
+
+    },
+
+
+    function fail(data, status) {
+      console.log("fail");
+      console.log(data);
+      alert('Expand Request failed.  Returned status of ' + status);
+    }
+  );
+
+
+}
+
+
+
+expand1_sort_layout = () => {
+
+  $.ajax({
+    url: '/expand1_sort_layout',
+    type: 'POST',
+
+  })
+  .then(
+    function success(json) {
+      console.log("expand1 layout starts");
+      console.log(json);
+      $('.all_articles').empty();
+      $.each(json, function(i, item) {
+
+        let titleLike = 'title' + json[i].id;
+        let contentLike = 'content' + json[i].id;
+        let layoutLike = 'layout' + json[i].id;
+        let hidetitle = json[i].title;
+
+        $(".all_articles").append('<div id="' + json[i].id + '" class="article'+ i +' art"></div>');
+        $('<a href="' + json[i].link + '">'+json[i].title+'</a>').appendTo( '.article' + i);
+        $("<p>" + json[i].author + '&nbsp&nbsp&nbsp&nbsp&nbsp' + json[i].reading_time +' min read '+'&nbsp&nbsp&nbsp&nbsp&nbsp'+json[i].claps+ '&nbsp'+ 'claps'+ "</p>").appendTo( '.article' + i);
+        $("<button class=add_article id=" + i + " name=\"" + json[i].title + "\" value=\"" + json[i].link + "\"><i class='far fa-star'></i></button>" ).appendTo( '.article' + i);
+        $('<span id=added' + i + '></span>').appendTo('.article' + i);
+
+        $('<button class = "btneach btntitle" id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btncontent" id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Content  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
+
+      })
+
+      $('<button class = "expandbtn" onclick="expand2_sort_layout()">See all</button>').appendTo('.all_articles');
+
+    },
+
+
+    function fail(data, status) {
+      console.log("fail");
+      console.log(data);
+      alert('Expand Request failed.  Returned status of ' + status);
+    }
+  );
+
+
+}
+
+expand2_sort_layout = () => {
+
+  $.ajax({
+    url: '/expand2_sort_layout',
+    type: 'POST',
+
+  })
+  .then(
+    function success(json) {
+      console.log("expand1 layout starts");
+      console.log(json);
+      $('.all_articles').empty();
+      $.each(json, function(i, item) {
+
+        let titleLike = 'title' + json[i].id;
+        let contentLike = 'content' + json[i].id;
+        let layoutLike = 'layout' + json[i].id;
+        let hidetitle = json[i].title;
+
+        $(".all_articles").append('<div id="' + json[i].id + '" class="article'+ i +' art"></div>');
+        $('<a href="' + json[i].link + '">'+json[i].title+'</a>').appendTo( '.article' + i);
+        $("<p>" + json[i].author + '&nbsp&nbsp&nbsp&nbsp&nbsp' + json[i].reading_time +' min read '+'&nbsp&nbsp&nbsp&nbsp&nbsp'+json[i].claps+ '&nbsp'+ 'claps'+ "</p>").appendTo( '.article' + i);
+        $("<button class=add_article id=" + i + " name=\"" + json[i].title + "\" value=\"" + json[i].link + "\"><i class='far fa-star'></i></button>" ).appendTo( '.article' + i);
+        $('<span id=added' + i + '></span>').appendTo('.article' + i);
+
+        $('<button class = "btneach btntitle" id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btncontent" id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Content  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
+
+      })
+
+
+    },
+
+
+    function fail(data, status) {
+      console.log("fail");
+      console.log(data);
+      alert('Expand Request failed.  Returned status of ' + status);
+    }
+  );
+
+
+}
+
+
+
+expand2 = () => {
+
+  $.ajax({
+    url: '/expand2',
+    type: 'POST',
+
+  })
+  .then(
+    function success(json) {
+      console.log("expand2 starts");
+      console.log(json);
+      $('.all_articles').empty();
+      $.each(json, function(i, item) {
+
+        let titleLike = 'title' + json[i].id;
+        let contentLike = 'content' + json[i].id;
+        let layoutLike = 'layout' + json[i].id;
+        let hidetitle = json[i].title;
+
+        $(".all_articles").append('<div id="' + json[i].id + '" class="article'+ i +' art"></div>');
+        $('<a href="' + json[i].link + '">'+json[i].title+'</a>').appendTo( '.article' + i);
+        $("<p>" + json[i].author + '&nbsp&nbsp&nbsp&nbsp&nbsp' + json[i].reading_time +' min read '+'&nbsp&nbsp&nbsp&nbsp&nbsp'+json[i].claps+ '&nbsp'+ 'claps'+ "</p>").appendTo( '.article' + i);
+        $("<button class=add_article id=" + i + " name=\"" + json[i].title + "\" value=\"" + json[i].link + "\"><i class='far fa-star'></i></button>" ).appendTo( '.article' + i);
+        $('<span id=added' + i + '></span>').appendTo('.article' + i);
+
+        $('<button class = "btneach btntitle" id = ' + titleLike + ' onclick="updateLikeTitle(' + json[i].id + ')">Title  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_title +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btncontent" id = ' + contentLike + ' onclick="updateLikeContent(' + json[i].id + ')">Content  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+ json[i].like_content +'</button>' ).appendTo( '.article' + i);
+        $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + json[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+json[i].like_layout +'</button>' ).appendTo( '.article' + i);
+
+      })
+
+    },
+
+
+    function fail(data, status) {
+      console.log("fail");
+      console.log(data);
+      alert('Expand Request failed.  Returned status of ' + status);
+    }
+  );
+
+
+}
 </script>
 
 <!-- <script type="text/discourse-plugin" version="0.8">
@@ -316,6 +828,26 @@ sort_layout = () => {
 </hr>
 </div>
 
+</br>
+
+<div class="push_container">
+<h2 style="text-align:center;">Daily skill push</h2>
+<div class="daily_push">
+
+  <!-- <p id = "push1"><img src="/public/img/model.jpg" width="42" height="42">How does spotify know you so well?<br>Hello</p> -->
+  <img src="push.jpg"   width="120" height="120">
+  <!-- <p><a href="https://www.w3schools.com/html/">Visit our HTML tutorial</a></p> -->
+  <!-- <p id = "push_title">How do you feel about Medium? Spotify...aobgpowinegproiwenrafgop</p>
+  <p>How do you feel about Medium? Spotify...aobgpowinegproiwenrafgop</p>
+  <p>How do you feel about Medium? Spotify...aobgpowinegproiwenrafgop</p> -->
+
+</div>
+
+<div class="daily_push1">
+    <img src="push1.jpg"   width="120" height="120">
+</div>
+</div>
+
 <div class="article_container">
   <h1>Articles Sources</h1>
   <!-- Filter button -->
@@ -330,7 +862,16 @@ sort_layout = () => {
     </ul>
   </div>
 
-  <div class="all_articles" id = "status"></div>
+<!-- Page one -->
+  <div class="all_articles" id = "status">
+    <!-- <button onclick="expandMore">See more</button> -->
+
+  </div>
+<!-- Page two -->
+  <!-- <div class="all_articles2" id = "status2"></div>
+  <button onclick="expandMore">See more</button> -->
+
+
 </div>
 
 </div>
