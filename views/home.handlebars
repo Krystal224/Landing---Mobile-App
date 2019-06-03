@@ -13,7 +13,6 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
 
-
 <script>
 
 
@@ -25,7 +24,7 @@
       }
     });
 
-    
+
     $.ajax('/fetchData', {
       method: 'get'
     })
@@ -386,6 +385,9 @@ sort_title = () => {
 
       })
       $('<button class = "expandbtn" onclick="expand1_sort_title()">Expand</button>').appendTo('.all_articles');
+      // $('html,body').animate({
+      //     scrollTop: $(".article_container").offset().top},
+      //     'slow');
 
     },
 
@@ -917,6 +919,22 @@ expand2 = () => {
 
 
 }
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("myBtn").style.display = "block";
+  } else {
+    document.getElementById("myBtn").style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
 </script>
 
 <!-- <script type="text/discourse-plugin" version="0.8">
@@ -958,7 +976,7 @@ expand2 = () => {
 <div class="daily_push">
 
   <!-- <p id = "push1"><img src="/public/img/model.jpg" width="42" height="42">How does spotify know you so well?<br>Hello</p> -->
-  <img src="push.jpg"   width="120" height="120">
+  <img src="push.jpg" width="120" height="120">
   <!-- <p><a href="https://www.w3schools.com/html/">Visit our HTML tutorial</a></p> -->
   <!-- <p id = "push_title">How do you feel about Medium? Spotify...aobgpowinegproiwenrafgop</p>
   <p>How do you feel about Medium? Spotify...aobgpowinegproiwenrafgop</p>
@@ -987,14 +1005,25 @@ expand2 = () => {
   <!-- Filter button -->
 
   <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filter by
+    <button class="btn hoverchange dropdown-toggle " type="button" data-toggle="dropdown" style="font-weight:600">Sort by
     <span class="caret"></span></button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <li><a class="dropdown-item" onclick = "sort_title()">Good title</a></li>
-      <li><a class="dropdown-item" onclick = "sort_content()">Good content</a></li>
-      <li><a class="dropdown-item" onclick = "sort_layout()">Good layout</a></li>
+      <li><a class="dropdown-item" onclick = "sort_title()">Good Title</a></li>
+      <li><a class="dropdown-item" onclick = "sort_content()">Good Content</a></li>
+      <li><a class="dropdown-item" onclick = "sort_layout()">Good Layout</a></li>
     </ul>
   </div>
+
+  <!-- <div class="dropdown">
+  <button class="dropbtn">Filter
+    <i class="fa fa-caret-down"></i></button>
+
+  <div class="dropdown-content">
+    <a href="#" onclick = "sort_title()">Good Title</a>
+    <a href="#" onclick = "sort_content()">Good content</a>
+    <a href="#" onclick = "sort_layout()">Good Layout</a>
+  </div>
+</div> -->
 
 <!-- Page one -->
   <div class="all_articles" id = "status">
@@ -1004,7 +1033,7 @@ expand2 = () => {
 <!-- Page two -->
   <!-- <div class="all_articles2" id = "status2"></div>
   <button onclick="expandMore">See more</button> -->
-
+  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
 </div>
 
