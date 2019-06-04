@@ -12,7 +12,7 @@
           window.location.reload();
       }
     });
-    
+
     $('body').on('click', '.mark', function (e) {
       console.log("clickkkkkked");
       e.preventDefault();
@@ -48,7 +48,7 @@
     });
   });
 </script>
-
+<div class="news-bg vh-100"></div>
 {{> header}}
 <div class="container">
   <h2 class="tag-title">{{tag}}</h2>
@@ -86,4 +86,5 @@
   {{#each star}}
 
   {{/each}}
+</div>
 </div>

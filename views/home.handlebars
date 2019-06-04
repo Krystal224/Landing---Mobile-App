@@ -987,25 +987,24 @@ function topFunction() {
 </div>
 </div>
 
-<div class="daily_hit_container">
+<!-- <div class="daily_hit_container">
     <h1> Daily Hit </h1>
-    <h3> At current moment, among the top most popular 50 articles, <br> the average reading time is</h3>
-    <p style="font-weight:800;font-size:30px;color:#ffd000; text-align:right;padding-right:40%;margin-top:-43px;" id="latest_reading"> </p>
-
-
-
-
-</div>
+</div> -->
 
 
 <div class="article_container">
   <h1>Articles Sources</h1>
+  <h4 style="text-align: center; font-weight: 400; padding-top: 10px;">
+    At current moment, among the top most popular 50 articles, <br> the average reading time is
+    <span style="font-weight:800;font-size:30px;color:#ffd000;" id="latest_reading"></span>
+  </h4>
+  <br/>
   <!-- Filter button -->
 
   <div class="dropdown">
     <button class="btn hoverchange dropdown-toggle " type="button" data-toggle="dropdown" style="font-weight:600">Sort by
     <span class="caret"></span></button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 10%">
       <li><a class="dropdown-item" onclick = "sort_title()">Good Title</a></li>
       <li><a class="dropdown-item" onclick = "sort_content()">Good Content</a></li>
       <li><a class="dropdown-item" onclick = "sort_layout()">Good Layout</a></li>
