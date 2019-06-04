@@ -3,45 +3,8 @@
 
   <ul>
       <li class="nav-home"><a style="color:black;" href="/">LANDING</a></li>
-      <li class="nav-bookmark"><a href="/source"><i class="fas fa-star"></i></a></li>
-      <button type="button" style = "position:absolute;right:48%;border: none;margin-top:10px;background: none;color: black; font-weight: 500;font-size: 20px;" id = "scroll_trend">Trends</button>
-      <button type="button" style = "position:absolute;right:33%;border: none;margin-top:10px;background: none;color: black; font-weight: 500;font-size: 20px;" id = "scroll_skill">Daily Skill Push</button>
-      <button type="button" style = "position:absolute;right:24%;border: none;margin-top:10px;background: none;color: black; font-weight: 500;font-size: 20px;" id = "scroll_Hit">Daily Hit</button>
-      <button type="button" style = "position:absolute;right:9%;border: none;margin-top:10px;background: none;color: black; font-weight: 500;font-size: 20px;" id = "scroll_article">Article Database</button>
+      <li class="nav-bookmark"><a href="/source">Bookmark</a></li>
   </ul>
 
 <!-- text-shadow: 2px 3px 3px #484242 -->
 <!-- <i class="fas fa-home"></i> -->
-
-
-  <script>
-
-$("#scroll_trend").click(function() {
-
-      $('html,body').animate({
-          scrollTop: $(".trend").offset().top},
-          'slow');
-  });
-
-$("#scroll_skill").click(function() {
-
-  $('html,body').animate({
-      scrollTop: $(".push_container").offset().top},
-      'slow');
-});
-
-$("#scroll_Hit").click(function() {
-
-  $('html,body').animate({
-      scrollTop: $(".daily_hit_container").offset().top},
-      'slow');
-});
-
-$("#scroll_article").click(function() {
-    console.log("scroll clicked");
-    $('html,body').animate({
-        scrollTop: $(".article_container").offset().top},
-        'slow');
-});
-
-  </script>

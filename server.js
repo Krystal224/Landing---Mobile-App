@@ -108,6 +108,8 @@ app.get('/trends/:trendid', (req, res) => {
 
 
       setTimeout(function(){
+        console.log("articles");
+        console.log(results[index]);
         res.render('news', {
           tag: titles[index].query,
           news: results[index].articles,

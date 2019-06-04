@@ -15,15 +15,13 @@
 
 <script>
 
-
   $(document).ready(function() {
-
     $(window).bind("pageshow", function(event) {
       if (event.originalEvent.persisted) {
+          console.log("persist");
           window.location.reload();
       }
     });
-
 
     $.ajax('/fetchData', {
       method: 'get'
@@ -57,7 +55,7 @@
 
         })
 
-        $('<button class = "expandbtn" onclick="expand1()">expand</button>').appendTo('.all_articles');
+        $('<button class = "expandbtn" onclick="expand1()"><i class="fas fa-chevron-down"></i><p>MORE</p></button>').appendTo('.all_articles');
 
       },
       function fail(data, status) {
@@ -384,7 +382,7 @@ sort_title = () => {
         $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + rows[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+rows[i].like_layout +'</button>' ).appendTo( '.article' + i);
 
       })
-      $('<button class = "expandbtn" onclick="expand1_sort_title()">Expand</button>').appendTo('.all_articles');
+      $('<button class = "expandbtn" onclick="expand1_sort_title()"><i class="fas fa-chevron-down"></i><p>MORE</p></button>').appendTo('.all_articles');
       // $('html,body').animate({
       //     scrollTop: $(".article_container").offset().top},
       //     'slow');
@@ -437,7 +435,7 @@ sort_content = () => {
         $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + rows[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+rows[i].like_layout +'</button>' ).appendTo( '.article' + i);
 
       })
-      $('<button class = "expandbtn" onclick="expand1_sort_content()">Expand</button>').appendTo('.all_articles');
+      $('<button class = "expandbtn" onclick="expand1_sort_content()"><i class="fas fa-chevron-down"></i><p>MORE</p></button>').appendTo('.all_articles');
 
     },
 
@@ -489,7 +487,7 @@ sort_layout = () => {
 
       })
 
-      $('<button class = "expandbtn" onclick="expand1_sort_layout()">Expand</button>').appendTo('.all_articles');
+      $('<button class = "expandbtn" onclick="expand1_sort_layout()"><i class="fas fa-chevron-down"></i><p>MORE</p></button>').appendTo('.all_articles');
 
     },
 
@@ -541,7 +539,7 @@ expand1 = () => {
 
       })
 
-      $('<button class = "expandbtn" onclick="expand2()">See all</button>').appendTo('.all_articles');
+      $('<button class = "expandbtn" onclick="expand2()"><i class="fas fa-chevron-down"></i><p>ALL</p></button>').appendTo('.all_articles');
 
     },
 
@@ -593,7 +591,7 @@ expand1_sort_title = () => {
 
       })
 
-      $('<button class = "expandbtn" onclick="expand2_sort_title()">See all</button>').appendTo('.all_articles');
+      $('<button class = "expandbtn" onclick="expand2_sort_title()"><i class="fas fa-chevron-down"></i><p>ALL</p></button>').appendTo('.all_articles');
 
     },
 
@@ -697,7 +695,7 @@ expand1_sort_content = () => {
         $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + rows[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+rows[i].like_layout +'</button>' ).appendTo( '.article' + i);
       })
 
-      $('<button class = "expandbtn" onclick="expand2_sort_content()">See all</button>').appendTo('.all_articles');
+      $('<button class = "expandbtn" onclick="expand2_sort_content()"><i class="fas fa-chevron-down"></i><p>ALL</p></button>').appendTo('.all_articles');
 
     },
 
@@ -802,7 +800,7 @@ expand1_sort_layout = () => {
 
       })
 
-      $('<button class = "expandbtn" onclick="expand2_sort_layout()">See all</button>').appendTo('.all_articles');
+      $('<button class = "expandbtn" onclick="expand2_sort_layout()"><i class="fas fa-chevron-down"></i><p>ALL</p></button>').appendTo('.all_articles');
 
     },
 
@@ -946,7 +944,7 @@ function topFunction() {
       // api.replaceIcon('heart', 'thumbs-up');
 </script> -->
 
-{{> header}}
+{{> homeHeader}}
 <div class="content">
 <div class="banner vh-100">
   <h1>Landing</h1>
