@@ -1,6 +1,7 @@
 /**This file contains all the functions used in home.handlebars.
-  It makes ajax call to fetch data from sqlite database and also save user input
+  It makes ajax call to fetch data from sqlite database and also insert new data
   (such as vote for liking content) to database.
+
 **/
 $(document).ready(() => {
   $.ajax('/fetchData', {

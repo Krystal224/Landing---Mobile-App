@@ -1,5 +1,6 @@
-
-
+#File Header:
+#This file is used to scrape most updated article that teaches people writing skills,
+#this file will run everytime you open the website
 
 
 import pandas as pd

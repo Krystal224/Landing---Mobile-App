@@ -1,6 +1,6 @@
 /**This file contains all the code we have for our backend.
   In this file, we make api call to fetch data and generate handlebars template.
-  We also save data to our database
+  It is also connected to database to fetch data and push data to database.
 **/
 
 const express = require('express');
