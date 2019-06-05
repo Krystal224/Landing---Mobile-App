@@ -10,6 +10,10 @@ body {
   margin: 0;
 }
 
+.header {
+  background-color: #F5BE3B;
+}
+
 .art{
   border: 1px solid #DBDBDB;
   margin: auto;
@@ -309,7 +313,7 @@ body {
 } */
 
 .news-bg {
-  background: url("news2.png");
+  /* background: url("news.png"); */
   background-repeat: no-repeat;
   position: fixed;
   width: 100%;
@@ -364,7 +368,7 @@ body {
 
 .tag-title {
   text-align: center;
-  margin-top: 2em;
+  margin-top: 1em;
   margin-bottom: 1em;
 }
 
@@ -456,7 +460,7 @@ ul button {
 }
 
 .my-source {
-  margin-top: 2em;
+  margin-top: 1em;
   margin-bottom: 1em;
   text-align: center;
 }
@@ -477,7 +481,7 @@ ul button {
 }
 
 .bookmark-bg {
-  background: url("news1.png");
+  /* background: url("bookmark.png"); */
   background-repeat: no-repeat;
   position: fixed;
   width: 100%;
