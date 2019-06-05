@@ -1,3 +1,8 @@
+/**This file contains all the code we have for our backend.
+  In this file, we make api call to fetch data and generate handlebars template.
+  We also save data to our database  
+**/
+
 const express = require('express');
 const app = express();
 //Google trends api
@@ -188,35 +193,9 @@ app.post('/sourcedata', (req, res) => {
   );
 });
 
-
-// app.get('/Writing', function (req, res) {
-//   fs.readFile('test.json', 'utf8', function (err, data) {
-//     if (err) throw err;
-//     data = JSON.stringify(data);
-//     // data = data[0];
-//     res.send(data);
-//   });
-// })
-
-// app.get('/writing', (req, res) => {
-//   // db.all() fetches all results from an SQL query into the 'rows' variable:
-//   db.all('SELECT title FROM writings', (err, rows) => {
-//     console.log(rows);
-//     rows = rows.map(rows => rows.title);
-//     res.send(rows);
-//   });
-// });
-
-
 app.get('/fetchData',(req, res, next) =>{
   console.log("requesting to fetch data");
   db.all('SELECT * FROM author_article LIMIT 4', (err, rows) =>{
-    // console.log(rows);
-    // const articles = rows.map(e => e.title);
-    // res.render('home',{
-    //     send_data:rows
-    // });
-
     var icon = []
     var saved = "fas fa-star";
     var unsaved = "far fa-star";
@@ -367,25 +346,6 @@ app.post('/expand2',(req, res, next) =>{
   });
 });
 
-// app.post('/updateLike', (req, res, next) => {
-//
-//   const { body } = req;
-//   const { article_id } = body;
-//   console.log(article_id);
-//   db.get('SELECT like FROM author_article WHERE id = ' + article_id, (err, result) => {
-//     console.log(result);
-//     db.get('UPDATE author_article SET like = ' + (result.like + 1) + ' WHERE id = ' + article_id, (err,) => {
-//       if (err) {
-//         res.send({
-//           succees: false,
-//           message: "Internal error"
-//         })
-//       }
-//     });
-//   });
-// })
-
-
 app.post('/updateLikeTitle', (req, res, next) => {
 
   const { body } = req;
@@ -403,54 +363,16 @@ app.post('/updateLikeTitle', (req, res, next) => {
           succees: false,
           message: "Internal error"
         })
-
       }
       else {
         res.send({
           newLikes: newLikes,
           newAction: newAction
-
-
         });
-
-
-
       }
     });
-
-
   });
-
-
 })
-
-// app.post('/updateUnLikeTitle', (req, res, next) => {
-//
-//   const { body } = req;
-//   const { article_id } = body;
-//   console.log(article_id);
-//   db.get('SELECT like_title actionT ROM author_article WHERE id = ' + article_id, (err, result) => {
-//     console.log(result);
-//     let newLikes = result.like_title - 1;
-//
-//     db.get('UPDATE author_article SET ' + 'like_title = ' + (result.like_title - 1) +','+ 'actionT = ' + (result.actionT - 1)+' WHERE id = ' + article_id, (err,) => {
-//       if (err) {
-//         res.send({
-//           succees: false,
-//           message: "Internal error"
-//         })
-//       }
-//       else {
-//         res.send({
-//           newLikes: newLikes
-//         });
-//       }
-//     });
-//
-//
-//   });
-// })
-
 
 
 app.post('/updateLikeContent', (req, res, next) => {

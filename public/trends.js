@@ -1,6 +1,5 @@
-// jQuery convention for running when the document has been fully loaded:
+/**This method is used in**/
 $(document).ready(() => {
-
   $('body').on('click', '.trend-data', function (e) {
     console.log("clickkkkkked");
     $('#news').empty();

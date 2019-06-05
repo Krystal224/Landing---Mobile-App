@@ -1,5 +1,8 @@
-
-<!-- This is the Home view and will render into the main.hbs layout -->
+<!-- The bookmark page displays all the saved articles/news. It makes an ajax call
+    to the backend to get all data in the table in database.
+    Users can also delete a bookmark which is executed by making ajax call and
+    delete the selected data from database.
+ -->
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -49,6 +52,6 @@
 {{> header}}
 <div class="bookmark-bg vh-100"></div>
 <div class="container">
-  <h1 class="my-source">Bookmarks</h1>  
+  <h1 class="my-source">Bookmarks</h1>
   <div id="bookmarks"></div>
 </div>
