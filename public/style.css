@@ -15,7 +15,8 @@ body {
 }
 
 .header {
-  background-color: #F0A86F;
+  /* background-color: #F0A86F; */
+  background-color: transparent;
 }
 
 .art{
@@ -336,6 +337,7 @@ body {
 .news span {
   font-size: 24px;
   padding-bottom: 0.5em;
+  font-family: Roboto;
 }
 
 .news button {
@@ -353,6 +355,8 @@ body {
   text-align: center;
   margin-top: 1em;
   margin-bottom: 1em;
+  font-family: Montserrat;
+  font-weight: 600;
 }
 
 .hidden {
@@ -391,7 +395,7 @@ body {
 }
 
 ul {
-  height: 60px;
+  height: 70px;
   width: 100%;
   list-style-type: none;
   padding-top: 0.5em;
@@ -410,7 +414,7 @@ li {
   float: left;
   margin-left: 1em;
   width: 80px;
-  height: 72px;
+  height: 60px;
 }
 
 .nav-home div {
@@ -457,6 +461,8 @@ ul button {
   margin-top: 1em;
   margin-bottom: 1em;
   text-align: center;
+  font-family: Montserrat;
+  font-weight: 600;
 }
 
 #bookmarks {
@@ -471,7 +477,8 @@ ul button {
   width: 90%;
   padding: 2em 3em;
   margin-bottom: 16px;
-  border-radius: 12px
+  border-radius: 12px;
+  font-family: Roboto;
 }
 
 .bookmark-bg {
