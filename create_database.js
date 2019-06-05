@@ -1,18 +1,19 @@
+// File Header:
+
+// This file creates the Sqlite database called test.db, which make uses of the json file cleaned by clean_csv.py
+// It creates a table called 'author_article' with 10 columns, including article title, author, reading_time,
+// clappings,like reasons(title,layout,content).
+
+
 console.log('running create database');
 
 const fs = require('fs');
 var jsonText = fs.readFileSync('new.json');
-
 var jsonObj = JSON.parse(jsonText);
-
-
-
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('test.db');
 
-// run each database statement *serially* one after another
-// (if you don't do this, then all statements will run in parallel,
-//  which we don't want)
+
   //DROP TABLE [IF EXISTS] [schema_name.]author_article;
 db.serialize(() => {
   // create a new database table:

@@ -1,6 +1,13 @@
 Ziwen Zeng:
+1. Use python to clean up Medium article dataset.
+2. Set up SQLite database to import dataset and implement "Like" system that gives input for database.
+3. Use Python to scrape web page (scrape.py) to get most updated articles with topic "how to write a good article" and implement this code running everyday to make our website keep up with latest articles.
+4. Finish web development for Article database and Daily Skill section
+5. Use Photoshop to create homepage and Logo.
+6. General Layout & styling.
 
-Yuhan Wang: 
+
+Yuhan Wang:
 1. Set up the basic frame for frontend (handlebars.js) and backend (server.js).
 2. Make API call and visualize data received from the API (trend section & news page).
 3. Create a separate table in database to store bookmarked news/articles (bookmark page).
