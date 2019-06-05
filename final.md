@@ -40,4 +40,4 @@ Source code files:
 Link to Google slides:
 [Google slides](https://docs.google.com/presentation/d/147JHu6fw49ohmXyrEzmPPCYnbgcbc7zJ37xwDOdFKcg/edit?usp=sharing)
 
-[demo video] (https://drive.google.com/file/d/1MgaizvDlLvddspm7ENBN0MRPkL6B6hDM/view)
+[demo video](https://drive.google.com/file/d/1MgaizvDlLvddspm7ENBN0MRPkL6B6hDM/view)
