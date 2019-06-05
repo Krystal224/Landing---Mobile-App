@@ -72,15 +72,12 @@ app.get('/trends/:trendid', (req, res) => {
         return result.title;
       });
       var index;
-      titles.map((title, i) => {
-        if (title.query == trend) {
+      for (let i=0; i<titles.length; i++) {
+        if (titles[i].query === trend) {
           index = i;
         }
-        return -1;
-      });
+      }
       console.log("rendering trend news page");
-      console.log("resultsss");
-      console.log(index);
       var icon = []
       var saved = "fas fa-star";
       var unsaved = "far fa-star";

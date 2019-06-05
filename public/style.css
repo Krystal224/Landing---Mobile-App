@@ -391,7 +391,7 @@ body {
 }
 
 ul {
-  height: 68px;
+  height: 60px;
   width: 100%;
   list-style-type: none;
   padding-top: 0.5em;
@@ -409,6 +409,16 @@ li {
 .nav-home {
   float: left;
   margin-left: 1em;
+  width: 80px;
+  height: 72px;
+}
+
+.nav-home div {
+  background: url('logo.PNG');
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .nav-home img {
