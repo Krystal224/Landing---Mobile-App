@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Cinzel+Decorative');
 button, a {
   cursor: pointer;
 }
@@ -11,15 +14,20 @@ body {
 }
 
 .art{
-  border: 1px solid #DBDBDB;
+
   margin: auto;
-  box-shadow: 5px 5px 3px #dcbdc7;
+
   background-color: white;
   width:80%;
-  height: 30%;
+  height: 25%;
   padding-bottom:45px;
-  margin-bottom:16px;
-  border-radius: 12px;
+  margin-bottom:42px;
+
+
+  border: 4px solid;
+  box-shadow: 13px -12px 1px #c1d0f9;
+  border-radius:8px;
+  border-color:#9cb6ff;
 
   /* border:solid; */
 
@@ -46,7 +54,7 @@ body {
 
 .banner {
   width: 100%;
-  background-image: url("home3.png");
+  background-image: url("home.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -55,20 +63,23 @@ body {
 
 .banner h1 {
   text-align: center;
-  text-shadow: 2px 2px 8px #4A4848;
-  font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
+  text-shadow: 2px 2px 8px #949494;
+  font-family:Roboto;
+  /* font-family: "Arial Black", "Arial Bold", Gadget, sans-serif; */
   /* font-family: Copperplate, "Copperplate Gothic Light", fantasy; */
   font-size: 120px;
   font-weight: bolder;
   letter-spacing: 8px;
-  color: #F5BE3B;
-  padding-top: 1em;
+  color: #f0a86f;
+  padding-top:181px;
 
 }
 
 .banner p{
   text-align: center;
-  text-shadow: 2px 2px 8px #4A4848;
+  text-shadow: 2px 2px 5px lightgrey;
+  padding-top:30px;
+
 
   /* font-weight: 700; */
 }
@@ -80,6 +91,9 @@ body {
 
 .push_container h2 {
   padding-bottom: 30px;
+  font-family: Cinzel Decorative;
+  font-weight: bold;
+  font-size:40px;
 }
 
 .daily_push{
@@ -88,14 +102,18 @@ body {
   padding-left: 10px;
   overflow: auto;
   width:80%;
-  border: 1px solid #DBDBDB;
   margin: auto;
   /* box-shadow: 5px 5px 3px #dcbdc7;*/
 
-  box-shadow: 5px 5px 3px #dcbdc7;
+
   background-color: white;
-  margin-bottom:16px;
-  border-radius: 12px;
+  margin-bottom:35px;
+
+
+  border: 4px solid;
+  box-shadow: 13px -12px 1px #ffd9bc;
+  border-radius:8px;
+  border-color:#fdb780;
 
 }
 
@@ -119,14 +137,16 @@ body {
 
 .daily_push a{
   padding-left:4%;
-  font-size: 22px;
-  color:black;
+  font-size: 23px;
+  color:#5f5e5d;
+  /* font-family:Montserrat; */
 }
 
 .daily_push p{
   padding-left:4%;
-  font-size: 22px;
-  color:grey;
+  font-size: 23px;
+  color:#9c9c9c;
+  /* font-family:Montserrat; */
 }
 
 .daily_push1{
@@ -136,14 +156,20 @@ body {
   overflow: auto;
   margin: auto;
   width:80%;
-  border: 1px solid #DBDBDB;
+
   margin: auto;
   /* box-shadow: 5px 5px 3px #dcbdc7;*/
 
-  box-shadow: 5px 5px 3px #dcbdc7;
+
   background-color: white;
   margin-bottom:16px;
-  border-radius: 12px;
+
+
+  border: 4px solid;
+  padding: 10px;
+  box-shadow: 13px -12px 1px #ffd9bc;
+  border-radius:8px;
+  border-color:#fdb780;
 
 }
 
@@ -153,14 +179,16 @@ body {
 
 .daily_push1 a{
   padding-left:4%;
-  font-size: 22px;
-  color:black;
+  font-size: 23px;
+  color:#5f5e5d;
+  /* font-family:Montserrat; */
 }
 
 .daily_push1 p{
   padding-left:4%;
-  font-size: 22px;
-  color:grey;
+  font-size: 23px;
+  color:#9c9c9c;
+  /* font-family:Montserrat; */
 }
 
 .daily_hit_container{
@@ -187,17 +215,27 @@ body {
 
 .article_container h1{
   text-align: center;
-  padding-top: 1.5em;
+  padding-top: 1.0em;
+  font-family: Cinzel Decorative;
+  font-weight: bold;
+  font-size:40px;
 }
+
+.article_container h4{
+  font-family:Roboto;
+  font-size:28px;
+}
+
 .all_articles {
   border:none;
+  padding-top:20px;
 }
 .all_articles a{
   text-decoration: none;
   padding-top:20px;
   padding-left:25px;
   font-size:22px;
-  color:black;
+  color:#5f5e5d;
   border: none;
   display:block;
 
@@ -221,6 +259,8 @@ body {
   padding-top:5px;
   padding-bottom:5px;
   margin-right:1%;
+  font-weight:600;
+  font-family: Poppins;
 
 }
 
@@ -230,21 +270,21 @@ body {
 
 .btntitle{
   color:#EFC302;
-  background-color: #F5F0D7;
+  background-color: #fbf8e7;
   border-radius:10px;
   border:none;
 }
 
 .btncontent{
   color:#06D2E5;
-  background-color: #C5E9EF;
+  background-color: #ddf8fd;
   border-radius:10px;
   border:none;
 }
 
 .btnlayout{
   color:#F64C5F;
-  background-color: #FDBBC2;
+  background-color: #f9dbde;
   border-radius:10px;
   border:none;
 }
@@ -441,18 +481,19 @@ li {
   font-weight: 500;
   padding: 10px 15px 10px 15px;
   border-radius: 10px;
-  background-color: #F5BE3B;
+  background-color: #F0A86F;
 }
 
 ul button {
   color: black;
-  font-weight: 500;
-  font-size: 20px;
+  font-weight: 600;
+  font-size: 23px;
   margin-top: 10px;
   float: right;
   background: none;
   border: none;
   margin-right: 1.75em;
+  font-family:Montserrat;
 }
 
 .my-source {
@@ -545,7 +586,7 @@ ul button {
   border: none;
   outline: none;
   color: white;
-  background-color: #78d1dd;
+  background-color: #F0A86F;
   cursor: pointer;
   padding: 15px;
   border-radius: 4px;
@@ -553,7 +594,7 @@ ul button {
 }
 
 #myBtn:hover {
-  background-color: #efcbd8;
+  background-color: #A5BCFF;
 }
 
 .dropdown {
@@ -573,13 +614,40 @@ ul button {
 }
 
 .hoverchange{
-  background-color: #ffd945;
+  background-color: #f0a86f;
   border:none;
   color:white;
   padding: 10px 15px 10px 15px;
   font-size: 20px;
   margin-bottom: 10px;
 }
+
+
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    /* border-style: inset; */
+    border-width: 4px;
+    border-color:#A5BCFF;
+    width:80%;
+}
+
+.fa-chevron-down{
+  color:#F0A86F;
+}
+
+/*
+@fontface{
+  font-family: "Royalacid";
+  src:url('Royalacid.ttf')format('truetype');
+} */
+/* .expandbtn p{
+  color:#F0A86F;
+} */
+
 
 /* .btn-primary :hover{
   background-color: #c5a62d

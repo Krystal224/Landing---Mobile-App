@@ -2,10 +2,10 @@ console.log('running create database');
 
 const fs = require('fs');
 var jsonText = fs.readFileSync('new.json');
-// console.log(jsonText);
+
 var jsonObj = JSON.parse(jsonText);
 
-// console.log(jsonObj[0]['author']);
+
 
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('test.db');
@@ -20,9 +20,6 @@ db.serialize(() => {
    db.run("DROP TABLE author_article");
    db.run("CREATE TABLE author_article (id NUM, author TEXT, title TEXT, claps TEXT, reading_time NUM, link TEXT, like_title NUM, like_content NUM,like_layout NUM,actionT NUM)");
 
-   // db.run("CREATE TABLE author_article (id NUM, author TEXT, title TEXT, claps TEXT, reading_time NUM, link TEXT, like NUM)");
-   //db.run( "DROP TABLE [IF EXISTS] [schema_name.]author_article");
-  // db.run("CREATE TABLE author_article (author TEXT, claps NUM, link TEXT)");
 
   //load every author's information to this Database
   // 1. sort the json file by claps
@@ -32,23 +29,10 @@ db.serialize(() => {
 
   var i = 0
   for (i = 0; i < 99; i++){
-    // console.log("Hello World");
-    // db.run("INSERT INTO author_article VALUES ('jsonObj[i]['author']' )");
-     //console.log(jsonObj[0].claps);
-     //console.log(jsonObj[0].link);
+
      db.run("INSERT INTO author_article VALUES(?,?,?,?,?,?,?,?,?,?)", i, jsonObj[i].author, jsonObj[i].title,jsonObj[i].claps,jsonObj[i].reading_time, jsonObj[i].link, 0,0,0,0);
   }
 
-
-
-  // console.log('successfully created the users_to_pets table in pets.db');
-
-  // print them out to confirm their contents:
-  db.each("SELECT * FROM author_article", (err, row) => {
-      // console.log(row.name + ": " + row.job + ' - ' + row.pet);
-      // console.log(row);
-      //console.log(row.author + " " + row.claps + " " + row.link);
-  });
 });
 
 db.close();

@@ -55,7 +55,7 @@
 
         })
 
-        $('<button class = "expandbtn" onclick="expand1()"><i class="fas fa-chevron-down"></i><p>MORE</p></button>').appendTo('.all_articles');
+        $('<button class = "expandbtn" onclick="expand1()"><i class="fas fa-chevron-down"></i><p> View More</p></button>').appendTo('.all_articles');
 
       },
       function fail(data, status) {
@@ -268,40 +268,6 @@ updateLikeTitle = (id) => {
   });
 }
 
-// updateUnLikeTitle = (id) => {
-//     console.log("function unlike called")
-//   $.ajax({
-//     url: '/updateUnLikeTitle',
-//     type: 'POST',
-//     dataType : 'json',
-//
-//     data: {
-//       article_id: id
-//     },
-//     success: (data) => {
-//
-//       let pass = '#title' + id;
-//       $(pass).html('Title  ' +'<i class="far fa-thumbs-up"></i>'+'&nbsp'+ data.newLikes);
-//
-//       console.log("successfully reload idex.html")
-//
-//     }
-//   });
-// }
-
-// actionCount = (count,id) =>{
-//   console.log("count:"+count);
-//   console.log("id:"+id);
-//   if(count == 0){
-//     updateLikeTitle(id)
-//   }
-//
-//   else{
-//     updateUnLikeTitle(id)
-//   }
-//
-// }
-
 
 updateLikeContent = (id) => {
   $.ajax({
@@ -382,7 +348,7 @@ sort_title = () => {
         $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + rows[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+rows[i].like_layout +'</button>' ).appendTo( '.article' + i);
 
       })
-      $('<button class = "expandbtn" onclick="expand1_sort_title()"><i class="fas fa-chevron-down"></i><p>MORE</p></button>').appendTo('.all_articles');
+      $('<button class = "expandbtn" onclick="expand1_sort_title()"><i class="fas fa-chevron-down"></i><p>View More</p></button>').appendTo('.all_articles');
       // $('html,body').animate({
       //     scrollTop: $(".article_container").offset().top},
       //     'slow');
@@ -435,7 +401,7 @@ sort_content = () => {
         $('<button class = "btneach btnlayout" id = ' + layoutLike + ' onclick="updateLikeLayout(' + rows[i].id + ')">Layout  '+ '<i class="far fa-thumbs-up"></i>'+'&nbsp'+rows[i].like_layout +'</button>' ).appendTo( '.article' + i);
 
       })
-      $('<button class = "expandbtn" onclick="expand1_sort_content()"><i class="fas fa-chevron-down"></i><p>MORE</p></button>').appendTo('.all_articles');
+      $('<button class = "expandbtn" onclick="expand1_sort_content()"><i class="fas fa-chevron-down"></i><p>View More</p></button>').appendTo('.all_articles');
 
     },
 
@@ -487,7 +453,7 @@ sort_layout = () => {
 
       })
 
-      $('<button class = "expandbtn" onclick="expand1_sort_layout()"><i class="fas fa-chevron-down"></i><p>MORE</p></button>').appendTo('.all_articles');
+      $('<button class = "expandbtn" onclick="expand1_sort_layout()"><i class="fas fa-chevron-down"></i><p>View More</p></button>').appendTo('.all_articles');
 
     },
 
@@ -949,9 +915,10 @@ function topFunction() {
 <div class="banner">
   <div class="vh-100">
   <h1>Landing</h1>
-  <p style="font-size: 40px; font-family: Georgia, Times, Times New Roman, serif; font-style: italic; color: rgb(245, 190, 59, 0.7);">Pack your way of We Media writing</p>
+  <p style="font-size: 40px; font-family: Georgia, Times, Times New Roman, serif; font-style: italic; color:#f0a86f;">Pack your way of We Media writing</p>
   <br/>
-  <p style="font-size: 25px; color: rgb(245, 190, 59, 0.9);"> ✶ Latest trends &nbsp ✶ Useful writing skills &nbsp ✶ Analysis of successful articles.</p>
+
+  <!-- <p style="font-size: 25px; color: rgb(245, 190, 59, 0.9);"> ✶ Latest trends &nbsp ✶ Useful writing skills &nbsp ✶ Analysis of successful articles.</p> -->
 
    </div>
    </div>
@@ -966,6 +933,8 @@ function topFunction() {
 
 </hr>
 </div>
+
+<hr>
 
 </br>
 
@@ -996,7 +965,7 @@ function topFunction() {
 
 <div class="article_container">
   <h1>Articles Sources</h1>
-  <h4 style="text-align: center; font-weight: 400; padding-top: 10px;">
+  <h4 style="text-align: center; font-weight: 400; padding-top: 30px;">
     At current moment, among the top most popular 50 articles, <br> the average reading time is
     <span style="font-weight:800;font-size:30px;color:#ffd000;" id="latest_reading"></span>
   </h4>
@@ -1004,7 +973,7 @@ function topFunction() {
   <!-- Filter button -->
 
   <div class="dropdown">
-    <button class="btn hoverchange dropdown-toggle " type="button" data-toggle="dropdown" style="font-weight:600">Sort by
+    <button class="btn hoverchange dropdown-toggle " type="button" data-toggle="dropdown" style="padding-bottom:20px;font-weight:600">Sort by
     <span class="caret"></span></button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 10%">
       <li><a class="dropdown-item" onclick = "sort_title()">Good Title</a></li>
@@ -1013,16 +982,6 @@ function topFunction() {
     </ul>
   </div>
 
-  <!-- <div class="dropdown">
-  <button class="dropbtn">Filter
-    <i class="fa fa-caret-down"></i></button>
-
-  <div class="dropdown-content">
-    <a href="#" onclick = "sort_title()">Good Title</a>
-    <a href="#" onclick = "sort_content()">Good content</a>
-    <a href="#" onclick = "sort_layout()">Good Layout</a>
-  </div>
-</div> -->
 
 <!-- Page one -->
   <div class="all_articles" id = "status">
