@@ -1,6 +1,6 @@
 /**This file contains all the code we have for our backend.
   In this file, we make api call to fetch data and generate handlebars template.
-  We also save data to our database  
+  We also save data to our database
 **/
 
 const express = require('express');
@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({extended: true})); // hook up with your app
 //Handlebars
 const exphbs = require( 'express-handlebars');
 
- require('./create_database.js');
+// require('./create_database.js');
 const path = require('path');
 
 // use this library to interface with SQLite databases: https://github.com/mapbox/node-sqlite3
