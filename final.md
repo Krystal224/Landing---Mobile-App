@@ -18,7 +18,7 @@ Yuhan Wang:
 Source code files:
  - /public
     - style.css
-    - trends.js
+    - home.js
  - /views
     - /layouts
        - main.handlebars
