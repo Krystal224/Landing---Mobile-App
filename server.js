@@ -79,6 +79,8 @@ app.get('/trends/:trendid', (req, res) => {
         return -1;
       });
       console.log("rendering trend news page");
+      console.log("resultsss");
+      console.log(index);
       var icon = []
       var saved = "fas fa-star";
       var unsaved = "far fa-star";

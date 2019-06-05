@@ -1,3 +1,4 @@
+/**Styles for all the pages**/
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Cinzel+Decorative');
@@ -14,27 +15,20 @@ body {
 }
 
 .header {
-  background-color: #F5BE3B;
+  background-color: #F0A86F;
 }
 
 .art{
-
   margin: auto;
-
   background-color: white;
   width:80%;
   height: 25%;
   padding-bottom:45px;
   margin-bottom:42px;
-
-
   border: 4px solid;
   box-shadow: 13px -12px 1px #c1d0f9;
   border-radius:8px;
   border-color:#9cb6ff;
-
-  /* border:solid; */
-
 }
 
 .expandbtn{
@@ -69,23 +63,17 @@ body {
   text-align: center;
   text-shadow: 2px 2px 8px #949494;
   font-family:Roboto;
-  /* font-family: "Arial Black", "Arial Bold", Gadget, sans-serif; */
-  /* font-family: Copperplate, "Copperplate Gothic Light", fantasy; */
   font-size: 120px;
   font-weight: bolder;
   letter-spacing: 8px;
-  color: #f0a86f;
+  color: #FD8F3B;
   padding-top:181px;
-
 }
 
 .banner p{
   text-align: center;
   text-shadow: 2px 2px 5px lightgrey;
   padding-top:30px;
-
-
-  /* font-weight: 700; */
 }
 
 .push_container{
@@ -107,9 +95,6 @@ body {
   overflow: auto;
   width:80%;
   margin: auto;
-  /* box-shadow: 5px 5px 3px #dcbdc7;*/
-
-
   background-color: white;
   margin-bottom:35px;
 
@@ -121,20 +106,6 @@ body {
 
 }
 
-/* .art{
-  border: 1px solid #DBDBDB;
-  margin: auto;
-  box-shadow: 5px 5px 3px #dcbdc7;
-  background-color: white;
-  width:80%;
-  height: 30%;
-  padding-bottom:45px;
-  margin-bottom:16px;
-  border-radius: 12px;
-
-
-} */
-
 .daily_push img{
   float:left;
 }
@@ -143,14 +114,12 @@ body {
   padding-left:4%;
   font-size: 23px;
   color:#5f5e5d;
-  /* font-family:Montserrat; */
 }
 
 .daily_push p{
   padding-left:4%;
   font-size: 23px;
   color:#9c9c9c;
-  /* font-family:Montserrat; */
 }
 
 .daily_push1{
@@ -160,21 +129,14 @@ body {
   overflow: auto;
   margin: auto;
   width:80%;
-
   margin: auto;
-  /* box-shadow: 5px 5px 3px #dcbdc7;*/
-
-
   background-color: white;
   margin-bottom:16px;
-
-
   border: 4px solid;
   padding: 10px;
   box-shadow: 13px -12px 1px #ffd9bc;
   border-radius:8px;
   border-color:#fdb780;
-
 }
 
 .daily_push1 img{
@@ -185,14 +147,12 @@ body {
   padding-left:4%;
   font-size: 23px;
   color:#5f5e5d;
-  /* font-family:Montserrat; */
 }
 
 .daily_push1 p{
   padding-left:4%;
   font-size: 23px;
   color:#9c9c9c;
-  /* font-family:Montserrat; */
 }
 
 .daily_hit_container{
@@ -213,10 +173,6 @@ body {
   font-size:25px;
 }
 
-.article_container{
-  /* background-color: #F1CDD9; */
-}
-
 .article_container h1{
   text-align: center;
   padding-top: 1.0em;
@@ -234,6 +190,7 @@ body {
   border:none;
   padding-top:20px;
 }
+
 .all_articles a{
   text-decoration: none;
   padding-top:20px;
@@ -242,12 +199,10 @@ body {
   color:#5f5e5d;
   border: none;
   display:block;
-
 }
+
 .all_articles a:hover{
   text-decoration: underline;
-
-
 }
 
 .all_articles p{
@@ -265,12 +220,7 @@ body {
   margin-right:1%;
   font-weight:600;
   font-family: Poppins;
-
 }
-
-/* .btnleft{
-  margin-left:20px;
-} */
 
 .btntitle{
   color:#EFC302;
@@ -293,11 +243,6 @@ body {
   border:none;
 }
 
-/* .dropdown-menu a{
-  font-size: 30px
-} */
-
-
 .container {
   width: 100%;
   padding-right: 15px;
@@ -318,39 +263,36 @@ body {
   text-align: center;
   margin-bottom: 0.25em;
   color: black;
-  font-size: 32px;
+  font-family: Cinzel Decorative;
+  font-weight: bold;
+  font-size: 40px;
 }
 
 .trend p {
   text-align: center;
-  font-size: 20px;
   margin-bottom: 1.75em;
   color: black;
+  font-family: Roboto;
+  font-size: 28px;
 }
 
 .trend button {
-  font-family: "Arial Narrow", Arial, sans-serif;
-  font-size: 24px;
+  font-family: Montserrat;
+  letter-spacing: 0px;
+  font-size: 22px;
   font-weight: 700;
   padding: 0.35em 1em;
-
-  /* background: linear-gradient(rgba(255, 255, 255, 1),rgba(254, 218, 70, 0.9)); */
-
-  background-color: rgba(254, 218, 70);
-  color: #4C4637;
+  background-color: rgba(182, 208, 228, 0.5);
+  color: black;
   border-radius: 20px;
   margin-bottom: 0.5em;
   margin-right: 0.5em;
-  border: 2px solid #feda46;
+  border: 2px solid rgba(182, 208, 228, 0.5);
 }
 
 .trend_animation {
-  background: linear-gradient(rgba(255, 255, 255, 1),rgba(254, 218, 70, 0.9));
+  background: linear-gradient(rgba(255, 255, 255, 1),rgba(182, 208, 228, 0.9));
 }
-
-/* .trend button:hover {
-  padding: 0.5em 1.25em ;
-} */
 
 .news-bg {
   background: url("news2.png");
@@ -418,7 +360,6 @@ body {
 
 .show {
   display: block;
-  /* position: absolute; */
 }
 
 .show u {
@@ -449,18 +390,14 @@ body {
 }
 
 ul {
-  /* position: fixed; */
-  height: 60px;
+  height: 68px;
   width: 100%;
   list-style-type: none;
   padding-top: 0.5em;
   padding-left: 0;
   top: 0;
   margin: 0;
-  /* background-color: rgba(255, 255, 255, 0.5); */
-  /* background-color: #F74C4A; */
   background-color: white;
-  /* background-color: #E6B634; */
 }
 
 li {
@@ -473,6 +410,10 @@ li {
   margin-left: 1em;
 }
 
+.nav-home img {
+  width: 72px;
+}
+
 .nav-bookmark {
   float: right;
   margin-right: 1em;
@@ -482,22 +423,23 @@ li {
 
 .nav-bookmark a {
   color: white;
-  font-weight: 500;
   padding: 10px 15px 10px 15px;
   border-radius: 10px;
   background-color: #F0A86F;
+  font-family: Montserrat;
+  font-weight: 600;
 }
 
 ul button {
   color: black;
   font-weight: 600;
-  font-size: 23px;
+  font-size: 20px;
   margin-top: 10px;
   float: right;
   background: none;
   border: none;
   margin-right: 1.75em;
-  font-family:Montserrat;
+  font-family: Montserrat;
 }
 
 .my-source {
@@ -522,8 +464,7 @@ ul button {
 }
 
 .bookmark-bg {
-  /* background: url("bookmark.png"); */
-  background-repeat: no-repeat;
+  background-color: #f7f7f7;
   position: fixed;
   width: 100%;
   z-index: -10;
@@ -545,39 +486,12 @@ ul button {
   font-size: 24px;
 }
 
-
-
 .delete {
   background: none;
   color: red;
   border: none;
   font-size: 28px;
   float: right;
-}
-
-
-@media (min-width: 576px) {
-  .container {
-    max-width: 540px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-}
-
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1140px;
-  }
 }
 
 #myBtn {
@@ -643,54 +557,26 @@ hr {
   color:#F0A86F;
 }
 
-/*
-@fontface{
-  font-family: "Royalacid";
-  src:url('Royalacid.ttf')format('truetype');
-} */
-/* .expandbtn p{
-  color:#F0A86F;
-} */
-
-
-/* .btn-primary :hover{
-  background-color: #c5a62d
-} */
-/* .dropbtn {
-  background-color: #ffd945;
-  color: white;
-  padding: 14px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  font-weight:500;
-  width:120px;
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: white;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  text-align: center;
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
 }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
 }
-
-.dropdown-content a:hover {background-color: #f9cd2485;}
-
-.dropdown:hover .dropdown-content {display: block;}
-
-.dropdown:hover .dropbtn {background-color: #d4ac10;} */
